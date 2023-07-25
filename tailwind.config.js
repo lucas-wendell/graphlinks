@@ -21,6 +21,9 @@ module.exports = {
 				crimson: '#D80032',
 				'ghost-gray': '#F0EFF4',
 			},
+			fontFamily: {
+				jetBrains: 'var(--font-jetBrains)',
+			},
 		},
 	},
 	plugins: [],
