@@ -1,5 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 const Login: React.FC = () => {
 	return (
@@ -20,7 +22,10 @@ const Login: React.FC = () => {
 				</div>
 			</section>
 			<aside className="grow">
-				<figure className="bg-blue-700 w-full h-full">figure</figure>
+				<figure className="bg-blue-700 w-full h-full">
+					figure
+					<FontAwesomeIcon icon={faMagnifyingGlass} />
+				</figure>
 			</aside>
 		</main>
 	);
