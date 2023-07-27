@@ -24,18 +24,16 @@ const Button: React.FC<Props> = ({
 	const disabledStyle = 'bg-french-gray/40 text-jet/50';
 
 	return (
-		<div className="w-64">
-			<button
-				onClick={() => onClick?.()}
-				disabled={disabled}
-				className={`${
-					disabled ? disabledStyle : styles[type]
-				} duration-200 transition-colors ease-in w-full rounded-3xl p-3 font-semibold flex items-center justify-center gap-2`}
-			>
-				{icon && React.createElement(icon)}
-				<p>{text}</p>
-			</button>
-		</div>
+		<button
+			onClick={() => onClick?.()}
+			disabled={disabled}
+			className={`${
+				disabled ? disabledStyle : styles[type]
+			} duration-200 transition-colors ease-in w-full rounded-3xl p-3 font-semibold flex items-center justify-center gap-2 capitalize`}
+		>
+			{icon && React.createElement(icon)}
+			<p>{text}</p>
+		</button>
 	);
 };
 
