@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 import Button, { Props } from './Button';
-import { faEarth } from '@fortawesome/free-solid-svg-icons';
+import { FaGoogle } from 'react-icons/fa';
 
 export default {
 	component: Button,
@@ -23,7 +23,7 @@ export const Secondary: Story = {
 		type: 'secondary',
 		disabled: false,
 		text: 'Log In With Google',
-		icon: faEarth,
+		icon: FaGoogle,
 		onClick: () => console.log('click!'),
 	},
 };

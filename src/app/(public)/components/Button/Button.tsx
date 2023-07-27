@@ -1,12 +1,11 @@
-import { IconProp } from '@fortawesome/fontawesome-svg-core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
+import { IconType } from 'react-icons';
 
 export type Props = {
 	text: string;
 	type?: 'primary' | 'secondary';
 	disabled?: boolean;
-	icon: IconProp;
+	icon?: IconType;
 	onClick?: Function;
 };
 
@@ -14,7 +13,7 @@ const Button: React.FC<Props> = ({
 	text,
 	type = 'primary',
 	disabled = true,
-	icon,
+	icon = null,
 	onClick,
 }) => {
 	const styles = {
@@ -33,7 +32,7 @@ const Button: React.FC<Props> = ({
 					disabled ? disabledStyle : styles[type]
 				} duration-200 transition-colors ease-in w-full rounded-3xl p-3 font-semibold flex items-center justify-center gap-2`}
 			>
-				{icon && <FontAwesomeIcon icon={icon} />}
+				{icon && React.createElement(icon)}
 				<p>{text}</p>
 			</button>
 		</div>
