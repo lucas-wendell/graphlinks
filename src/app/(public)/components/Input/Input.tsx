@@ -1,17 +1,10 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useRef, useState } from 'react';
-
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { BsEye, BsEyeSlash } from 'react-icons/bs';
 import { useBorder } from './hooks/useBorder';
 
 export type Props = {
 	type: 'text' | 'password';
 	placeholder: string;
-};
-
-const icons = {
-	password: faEyeSlash,
-	text: faEye,
 };
 
 const Input: React.FC<Props> = ({ type, placeholder }) => {
@@ -40,16 +33,15 @@ const Input: React.FC<Props> = ({ type, placeholder }) => {
 				onFocus={() => setBorderState(() => 'outline')}
 				onBlur={() => setBorderState(() => 'normal')}
 			/>
-			{type === 'password' && (
-				<FontAwesomeIcon
-					className="cursor-pointer text-jet"
-					icon={icons[typeState]}
-					data-action="icon"
-					onClick={() => {
-						setTypeState(prev => (prev === 'password' ? 'text' : 'password'));
-					}}
-				/>
-			)}
+			<button
+				className="text-jet"
+				onClick={() => {
+					setTypeState(prev => (prev === 'password' ? 'text' : 'password'));
+				}}
+			>
+				{typeState === 'password' && <BsEyeSlash />}
+				{typeState === 'text' && <BsEye />}
+			</button>
 		</div>
 	);
 };
