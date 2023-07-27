@@ -39,8 +39,8 @@ const Input: React.FC<Props> = ({ type, placeholder }) => {
 					setTypeState(prev => (prev === 'password' ? 'text' : 'password'));
 				}}
 			>
-				{typeState === 'password' && <BsEyeSlash />}
-				{typeState === 'text' && <BsEye />}
+				{type !== 'text' && typeState === 'password' && <BsEyeSlash />}
+				{type !== 'text' && typeState === 'text' && <BsEye />}
 			</button>
 		</div>
 	);
