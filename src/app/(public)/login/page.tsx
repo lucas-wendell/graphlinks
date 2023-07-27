@@ -15,7 +15,9 @@ const Login: React.FC = () => {
 				/>
 				<div className="mt-20">
 					<div className="text-center">
-						<h1 className="text-5xl [word-spacing:-20px]">Welcome back</h1>
+						<h1 className="text-5xl [word-spacing:-20px] font-semibold uppercase">
+							Welcome back
+						</h1>
 						<p>Log in to your Graphlinks</p>
 					</div>
 				</div>
