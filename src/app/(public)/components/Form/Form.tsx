@@ -15,7 +15,7 @@ const Form: React.FC = () => {
 				<Input type="text" placeholder="E-mail" />
 				<Input type="password" placeholder="Password" />
 				<Link
-					className="max-w-fit text-dark-spring-green capitalize underline decoration-dark-spring-green"
+					className="max-w-fit text-dark-spring-green capitalize underline decoration-dark-spring-green max-md-phone:text-sm"
 					href={'https://github.com/lucas-wendell'}
 				>
 					forgot password?
@@ -36,7 +36,7 @@ const Form: React.FC = () => {
 					type="secondary"
 					disabled={false}
 				/>
-				<p className="text-gunmetal">
+				<p className="text-gunmetal max-md-phone:text-sm">
 					Don&apos;t have an account?{' '}
 					<Link
 						className="text-dark-spring-green underline decoration-dark-spring-green"

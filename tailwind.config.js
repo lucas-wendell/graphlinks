@@ -24,6 +24,9 @@ module.exports = {
 			fontFamily: {
 				jetBrains: 'var(--font-jetBrains)',
 			},
+			screens: {
+				'md-phone': '420px',
+			},
 		},
 	},
 	plugins: [],
