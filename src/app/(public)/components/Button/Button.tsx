@@ -1,19 +1,18 @@
-import React from 'react';
+import React, { ButtonHTMLAttributes, ElementType } from 'react';
 
-export type Props = {
+export type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
 	text: string;
-	type?: 'primary' | 'secondary';
-	disabled?: boolean;
-	icon?: { icon: React.ElementType; className?: string };
+	styleType?: 'primary' | 'secondary';
+	icon?: { icon: ElementType; className?: string };
 	onClick?: Function;
 };
 
 const Button: React.FC<Props> = ({
 	text,
-	type = 'primary',
-	disabled = true,
+	styleType = 'primary',
 	icon: Icon = null,
 	onClick,
+	...rest
 }) => {
 	const styles = {
 		primary: 'bg-electric-indigo text-ghost-gray hover:bg-dark-spring-green',
@@ -24,10 +23,10 @@ const Button: React.FC<Props> = ({
 
 	return (
 		<button
-			onClick={() => onClick?.()}
-			disabled={disabled}
+			{...rest}
+			onClick={onClick}
 			className={`${
-				disabled ? disabledStyle : styles[type]
+				rest.disabled ? disabledStyle : styles[styleType]
 			} duration-200 transition-colors ease-in w-full rounded-3xl p-3 font-semibold flex items-center justify-center gap-2 capitalize`}
 		>
 			{Icon && <Icon.icon className={Icon && Icon.className} />}

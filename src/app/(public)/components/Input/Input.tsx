@@ -36,6 +36,7 @@ const Input: React.FC<Props> = ({ type, placeholder }) => {
 				onBlur={() => setBorderState(() => 'normal')}
 			/>
 			<button
+				type="button"
 				className="text-jet"
 				onClick={() => {
 					setTypeState(prev => (prev === 'password' ? 'text' : 'password'));
