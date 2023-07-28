@@ -12,6 +12,8 @@ const Login: React.FC = () => {
 					alt="graphlinks logo"
 					width={120}
 					height={120}
+					placeholder="blur"
+					blurDataURL="/assets/logo.svg"
 				/>
 				<div className="mt-20">
 					<div className="text-center text-gunmetal">
