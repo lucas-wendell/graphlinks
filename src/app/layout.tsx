@@ -25,7 +25,7 @@ export default function RootLayout({
 	return (
 		<html
 			lang="en"
-			className={`${jetBrains_Mono.variable} font-jetBrains tracking-tighter [word-spacing:-3px]`}
+			className={`${jetBrains_Mono.variable} font-jetBrains tracking-tighter [word-spacing:-3px] selection:bg-dark-spring-green selection:text-ghost-gray`}
 		>
 			<body>
 				{isPublicPage && children}
