@@ -12,7 +12,7 @@ const Form: React.FC = () => {
 	return (
 		<form className="w-full">
 			<div className="flex flex-col gap-4">
-				<Input type="text" placeholder="E-mail" />
+				<Input type="email" placeholder="E-mail" />
 				<Input type="password" placeholder="Password" />
 				<Link
 					className="max-w-fit text-dark-spring-green capitalize underline decoration-dark-spring-green max-md-phone:text-sm"

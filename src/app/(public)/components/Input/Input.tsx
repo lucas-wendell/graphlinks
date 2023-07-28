@@ -1,15 +1,17 @@
 'use client';
 
-import React, { useRef, useState } from 'react';
+import React, { InputHTMLAttributes, useRef, useState } from 'react';
 import { BsEye, BsEyeSlash } from 'react-icons/bs';
 import { useBorder } from './hooks/useBorder';
 
-export type Props = {
-	type: 'text' | 'password';
+type InputHTMLProps = InputHTMLAttributes<HTMLInputElement>;
+
+export type Props = InputHTMLProps & {
+	type: InputHTMLProps['type'];
 	placeholder: string;
 };
 
-const Input: React.FC<Props> = ({ type, placeholder }) => {
+const Input: React.FC<Props> = ({ type, placeholder, ...rest }) => {
 	const inputRef = useRef<null | HTMLInputElement>(null);
 	const { borderState, setBorderState, borderStyle } = useBorder();
 
@@ -34,17 +36,20 @@ const Input: React.FC<Props> = ({ type, placeholder }) => {
 				placeholder={placeholder}
 				onFocus={() => setBorderState(() => 'outline')}
 				onBlur={() => setBorderState(() => 'normal')}
+				{...rest}
 			/>
-			<button
-				type="button"
-				className="text-jet"
-				onClick={() => {
-					setTypeState(prev => (prev === 'password' ? 'text' : 'password'));
-				}}
-			>
-				{type !== 'text' && typeState === 'password' && <BsEyeSlash />}
-				{type !== 'text' && typeState === 'text' && <BsEye />}
-			</button>
+			{type === 'password' && (
+				<button
+					type="button"
+					className="text-jet"
+					onClick={() => {
+						setTypeState(prev => (prev === 'password' ? 'text' : 'password'));
+					}}
+				>
+					{typeState === 'password' && <BsEyeSlash />}
+					{typeState === 'text' && <BsEye />}
+				</button>
+			)}
 		</div>
 	);
 };
