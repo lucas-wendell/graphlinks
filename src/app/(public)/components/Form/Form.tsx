@@ -25,13 +25,13 @@ const Form: React.FC = () => {
 				<Button text="Login" disabled={false} />
 				<p className="text-center text-dark-spring-green">OR</p>
 				<Button
-					Element={{ icon: AiOutlineGoogle, size: 20 }}
+					icon={{ icon: AiOutlineGoogle, size: 20 }}
 					text="continue with google"
 					type="secondary"
 					disabled={false}
 				/>
 				<Button
-					Element={{ icon: AiFillGithub, size: 20 }}
+					icon={{ icon: AiFillGithub, size: 20 }}
 					text="continue with github"
 					type="secondary"
 					disabled={false}

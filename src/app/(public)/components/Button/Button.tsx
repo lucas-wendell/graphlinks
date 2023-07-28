@@ -1,11 +1,10 @@
 import React from 'react';
-import { IconType } from 'react-icons';
 
 export type Props = {
 	text: string;
 	type?: 'primary' | 'secondary';
 	disabled?: boolean;
-	Element?: { icon: IconType; size?: number };
+	icon?: { icon: React.ElementType; size?: number };
 	onClick?: Function;
 };
 
@@ -13,7 +12,7 @@ const Button: React.FC<Props> = ({
 	text,
 	type = 'primary',
 	disabled = true,
-	Element = null,
+	icon: Icon = null,
 	onClick,
 }) => {
 	const styles = {
@@ -31,7 +30,7 @@ const Button: React.FC<Props> = ({
 				disabled ? disabledStyle : styles[type]
 			} duration-200 transition-colors ease-in w-full rounded-3xl p-3 font-semibold flex items-center justify-center gap-2 capitalize`}
 		>
-			{Element && React.createElement(Element.icon, { fontSize: Element.size })}
+			{Icon && <Icon.icon />}
 			<p>{text}</p>
 		</button>
 	);

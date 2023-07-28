@@ -4,7 +4,7 @@ import Form from '../components/Form/Form';
 
 const Login: React.FC = () => {
 	return (
-		<main className="flex min-w-screen min-h-screen">
+		<main className="flex min-w-screen min-h-screen overflow-hidden">
 			<section className="flex flex-col justify-center items-center bg-ghost-gray basis-9/12 max-sm:basis-full relative gap-10 p-10 max-lg:basis-8/12">
 				<Image
 					className="left-10 top-10 absolute"
@@ -24,7 +24,7 @@ const Login: React.FC = () => {
 				<Form />
 			</section>
 			<aside className="max-sm:hidden grow">
-				<figure className="bg-blue-700 w-full h-full"></figure>
+				<figure className="flex items-center justify-center bg-electric-indigo w-full h-full"></figure>
 			</aside>
 		</main>
 	);
