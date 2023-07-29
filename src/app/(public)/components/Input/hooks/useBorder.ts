@@ -3,7 +3,7 @@ import { useState } from 'react';
 export const useBorder = () => {
 	const borderColors = {
 		outline: 'border-jet',
-		normal: 'border-transparent',
+		normal: 'hover:border-french-gray',
 	};
 	const [borderState, setBorderState] =
 		useState<keyof typeof borderColors>('normal');

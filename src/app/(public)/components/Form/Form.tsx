@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import Input from '../Input/Input';
 
 import Link from 'next/link';
@@ -15,20 +15,22 @@ import { zodResolver } from '@hookform/resolvers/zod';
 const loginFormSchema = z.object({
 	email: z
 		.string()
-		.nonempty('E-mail is a required fild')
-		.email('Email format is not valid'),
+		.nonempty('E-mail is a required field')
+		.email('E-mail format is not valid'),
 	password: z
 		.string()
-		.nonempty('Password is a required fild')
+		.nonempty('Password is a required field')
 		.min(6, 'Password must be more than 6 characters'),
 });
+
+type LoginUserFormData = z.infer<typeof loginFormSchema>;
 
 const Form: React.FC = () => {
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
-	} = useForm({
+	} = useForm<LoginUserFormData>({
 		resolver: zodResolver(loginFormSchema),
 	});
 
@@ -38,24 +40,22 @@ const Form: React.FC = () => {
 		console.log('ola mundo');
 	};
 
-	useEffect(() => {
-		console.log(errors);
-	}, [errors]);
-
 	return (
 		<form className="w-full" onSubmit={handleSubmit(loginUser)}>
 			<div className="flex flex-col gap-4">
-				<Input
+				<Input<LoginUserFormData>
 					type="email"
 					placeholder="E-mail"
 					register={register}
 					name="email"
+					error={errors.email?.message}
 				/>
-				<Input
+				<Input<LoginUserFormData>
 					type="password"
 					placeholder="Password"
 					register={register}
 					name="password"
+					error={errors.password?.message}
 				/>
 				<Link
 					className="max-w-fit text-dark-spring-green capitalize underline decoration-dark-spring-green max-md-phone:text-sm"
