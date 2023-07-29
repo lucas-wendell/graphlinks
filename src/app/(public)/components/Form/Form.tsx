@@ -1,19 +1,62 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import Input from '../Input/Input';
 
 import Link from 'next/link';
 import Button from '../Button/Button';
 
 import { AiFillGithub, AiOutlineGoogle } from 'react-icons/ai';
+import { useForm } from 'react-hook-form';
+
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+
+const loginFormSchema = z.object({
+	email: z
+		.string()
+		.nonempty('E-mail is a required fild')
+		.email('Email format is not valid'),
+	password: z
+		.string()
+		.nonempty('Password is a required fild')
+		.min(6, 'Password must be more than 6 characters'),
+});
 
 const Form: React.FC = () => {
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm({
+		resolver: zodResolver(loginFormSchema),
+	});
+
+	const loginUser = (data: any) => {
+		console.log(data);
+		console.log(errors);
+		console.log('ola mundo');
+	};
+
+	useEffect(() => {
+		console.log(errors);
+	}, [errors]);
+
 	return (
-		<form className="w-full">
+		<form className="w-full" onSubmit={handleSubmit(loginUser)}>
 			<div className="flex flex-col gap-4">
-				<Input type="email" placeholder="E-mail" />
-				<Input type="password" placeholder="Password" />
+				<Input
+					type="email"
+					placeholder="E-mail"
+					register={register}
+					name="email"
+				/>
+				<Input
+					type="password"
+					placeholder="Password"
+					register={register}
+					name="password"
+				/>
 				<Link
 					className="max-w-fit text-dark-spring-green capitalize underline decoration-dark-spring-green max-md-phone:text-sm"
 					href={'https://github.com/lucas-wendell'}
