@@ -11,6 +11,7 @@ import { useForm } from 'react-hook-form';
 
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { signIn } from 'next-auth/react';
 
 const loginFormSchema = z.object({
 	email: z
@@ -34,10 +35,13 @@ const Form: React.FC = () => {
 		resolver: zodResolver(loginFormSchema),
 	});
 
-	const loginUser = (data: any) => {
-		console.log(data);
-		console.log(errors);
-		console.log('ola mundo');
+	const loginUser = async (data: LoginUserFormData) => {
+		const result = await signIn('credentials', {
+			email: data.email,
+			password: data.password,
+			redirect: true,
+			callbackUrl: '/admin',
+		});
 	};
 
 	return (

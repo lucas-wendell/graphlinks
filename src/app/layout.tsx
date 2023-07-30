@@ -1,12 +1,6 @@
-'use client';
-
 import './globals.css';
-
-import { routeIsPublic } from '../functions/index';
-import PrivateRoute from './components/PrivateRoute';
-
-import { usePathname } from 'next/navigation';
 import { JetBrains_Mono } from 'next/font/google';
+import NextAuthSessionProvider from './providers/sessionProvider';
 
 const jetBrains_Mono = JetBrains_Mono({
 	subsets: ['latin'],
@@ -19,17 +13,13 @@ export default function RootLayout({
 }: {
 	children: React.ReactNode;
 }) {
-	const pathname = usePathname();
-	const isPublicPage = routeIsPublic(pathname);
-
 	return (
 		<html
 			lang="en"
 			className={`${jetBrains_Mono.variable} font-jetBrains tracking-tighter [word-spacing:-3px] selection:bg-dark-spring-green selection:text-ghost-gray`}
 		>
 			<body>
-				{isPublicPage && children}
-				{!isPublicPage && <PrivateRoute>{children}</PrivateRoute>}
+				<NextAuthSessionProvider>{children}</NextAuthSessionProvider>
 			</body>
 		</html>
 	);
