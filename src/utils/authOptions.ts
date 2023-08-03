@@ -1,3 +1,4 @@
+import { login } from '@/service/login';
 import { NextAuthOptions } from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
 
@@ -9,21 +10,32 @@ export const authOptions: NextAuthOptions = {
 				email: { label: 'Email' },
 				password: { label: 'Password' },
 			},
-			authorize(credentials, req) {
-				console.log('entrou aqui');
-
+			async authorize(credentials) {
 				if (credentials?.email && credentials.password) {
-					console.log('entrou no if ');
+					const data = await login(credentials);
+					if ('error' in data) return null;
 
 					return {
-						id: '1',
-						email: 'lucas@server.com',
+						id: data.user.id.toString(),
+						email: data.user.email,
+						response: data,
 					};
 				}
 				return null;
 			},
 		}),
 	],
+	callbacks: {
+		async jwt({ token, user }) {
+			user && (token.user = user);
+			return token;
+		},
+		async session({ session, token }) {
+			session = token.user as any;
+			return session;
+		},
+	},
+
 	session: {
 		strategy: 'jwt',
 	},
