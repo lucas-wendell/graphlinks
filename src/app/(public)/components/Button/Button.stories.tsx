@@ -12,7 +12,7 @@ type Story = StoryObj<Props>;
 
 export const Primary: Story = {
 	args: {
-		type: 'primary',
+		styleType: 'primary',
 		disabled: false,
 		text: 'Login',
 		onClick: () => console.log('click!'),
@@ -20,10 +20,10 @@ export const Primary: Story = {
 };
 export const Secondary: Story = {
 	args: {
-		type: 'secondary',
+		styleType: 'secondary',
 		disabled: false,
 		text: 'Log In With Google',
-		icon: FaGoogle,
+		icon: { icon: FaGoogle },
 		onClick: () => console.log('click!'),
 	},
 };
