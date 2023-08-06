@@ -1,6 +1,10 @@
 import { Meta, StoryObj } from '@storybook/react';
 import Input, { Props } from './Input';
 
+type MockType = {
+	test: string;
+};
+
 export default {
 	component: Input,
 	title: 'Form/Input',
@@ -13,9 +17,9 @@ export default {
 			},
 		},
 	},
-} as Meta<Props>;
+} as Meta<Props<MockType>>;
 
-type Story = StoryObj<Props>;
+type Story = StoryObj<Props<MockType>>;
 
 export const TextInput: Story = {
 	args: {
