@@ -1,3 +1,5 @@
+'use client';
+
 import React, { ButtonHTMLAttributes, ReactNode } from 'react';
 import { tv } from 'tailwind-variants';
 import { motion, MotionProps } from 'framer-motion';

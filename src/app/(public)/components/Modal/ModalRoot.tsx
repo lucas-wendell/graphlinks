@@ -6,7 +6,7 @@ export type ModalRootProps = {
 
 const ModalRoot: React.FC<ModalRootProps> = ({ children }) => {
 	return (
-		<div className="flex items-center justify-center min-w-screen min-h-screen bg-black/10">
+		<div className="flex items-center justify-center absolute w-full h-full top-0 bg-black/30">
 			{children}
 		</div>
 	);
