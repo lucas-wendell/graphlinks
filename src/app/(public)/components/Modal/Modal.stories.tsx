@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta } from '@storybook/react';
 import { ModalCompositon } from './index';
 import { ModalRootProps } from './ModalRoot';
 import Image from 'next/image';
@@ -41,6 +41,7 @@ export const ModalWithActions = () => (
 			</ModalCompositon.Content>
 			<ModalCompositon.Actions>
 				<ModalCompositon.Action
+					onClick={() => console.log('test')}
 					title="Variant 2"
 					aria-label="Variant 2"
 					styleType="secondary"
@@ -48,6 +49,7 @@ export const ModalWithActions = () => (
 					Variant 2
 				</ModalCompositon.Action>
 				<ModalCompositon.Action
+					onClick={() => console.log('test')}
 					title="Variant 1"
 					aria-label="Variant 1"
 					styleType="primary"
@@ -77,6 +79,7 @@ export const ModalWithAction = () => (
 			</ModalCompositon.Content>
 			<ModalCompositon.Actions>
 				<ModalCompositon.Action
+					onClick={() => console.log('test')}
 					title="Variant 1"
 					aria-label="Variant 1"
 					styleType="primary"
@@ -105,6 +108,7 @@ export const ModalWithoutHeader = () => (
 			</ModalCompositon.Content>
 			<ModalCompositon.Actions>
 				<ModalCompositon.Action
+					onClick={() => console.log('test')}
 					styleType="secondary"
 					title="Variant 2"
 					aria-label="Variant 2"
@@ -112,6 +116,7 @@ export const ModalWithoutHeader = () => (
 					Variant 2
 				</ModalCompositon.Action>
 				<ModalCompositon.Action
+					onClick={() => console.log('test')}
 					title="Variant 1"
 					aria-label="Variant 1"
 					styleType="primary"
