@@ -8,6 +8,7 @@ export type ActionProps = ButtonHTMLAttributes<HTMLButtonElement> &
 	MotionProps & {
 		children: ReactNode;
 		styleType: 'primary' | 'secondary';
+		onClick: () => any;
 	};
 
 const button = tv({
@@ -24,12 +25,14 @@ const button = tv({
 const ModalAction: React.FC<ActionProps> = ({
 	children,
 	styleType,
+	onClick,
 	...props
 }) => {
 	return (
 		<motion.button
 			whileTap={{ scale: 0.9 }}
 			className={button({ color: styleType })}
+			onClick={onClick}
 			{...props}
 		>
 			{children}
