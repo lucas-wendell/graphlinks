@@ -13,7 +13,8 @@ export const authOptions: NextAuthOptions = {
 			async authorize(credentials) {
 				if (credentials?.email && credentials.password) {
 					const data = await login(credentials);
-					if ('error' in data) return null;
+
+					if ('error' in data) throw Error(data.error.message);
 
 					return {
 						id: data.user.id.toString(),

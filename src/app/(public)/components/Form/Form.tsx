@@ -11,7 +11,9 @@ import { useForm } from 'react-hook-form';
 
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+
 import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 const loginFormSchema = z.object({
 	email: z
@@ -27,6 +29,7 @@ const loginFormSchema = z.object({
 type LoginUserFormData = z.infer<typeof loginFormSchema>;
 
 const Form: React.FC = () => {
+	const router = useRouter();
 	const {
 		register,
 		handleSubmit,
@@ -39,9 +42,15 @@ const Form: React.FC = () => {
 		const result = await signIn('credentials', {
 			email: data.email,
 			password: data.password,
-			redirect: true,
+			redirect: false,
 			callbackUrl: '/admin',
 		});
+
+		if (result?.error) {
+			router.push(`login/?modal=true&title=${result.error}`);
+			return;
+		}
+		router.replace('/admin');
 	};
 
 	return (

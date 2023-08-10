@@ -8,7 +8,7 @@ export type ActionProps = ButtonHTMLAttributes<HTMLButtonElement> &
 	MotionProps & {
 		children: ReactNode;
 		styleType: 'primary' | 'secondary';
-		onClick: () => any;
+		onClick?: () => any;
 	};
 
 const button = tv({
