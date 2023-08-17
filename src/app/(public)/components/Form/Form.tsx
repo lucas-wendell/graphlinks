@@ -99,6 +99,12 @@ const Form: React.FC = () => {
 					text="continue with github"
 					styleType="secondary"
 					disabled={false}
+					onClick={() => {
+						signIn('github', {
+							redirect: false,
+							callbackUrl: '/admin',
+						});
+					}}
 				/>
 				<p className="text-gunmetal max-md-phone:text-sm">
 					Don&apos;t have an account?{' '}
