@@ -4,7 +4,7 @@ export type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
 	text: string;
 	styleType?: 'primary' | 'secondary';
 	icon?: { icon: ElementType; className?: string };
-	onClick?: Function;
+	onClick?: () => void;
 };
 
 const Button: React.FC<Props> = ({

@@ -86,6 +86,12 @@ const Form: React.FC = () => {
 					text="continue with google"
 					styleType="secondary"
 					disabled={false}
+					onClick={() => {
+						signIn('google', {
+							redirect: false,
+							callbackUrl: '/admin',
+						});
+					}}
 				/>
 				<Button
 					type="button"

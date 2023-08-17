@@ -37,4 +37,9 @@ export type Credentials = {
 	password: string;
 };
 
+export type ProviderDependencies = {
+	provider: string | undefined;
+	access_token: string | undefined;
+};
+
 export type Response = ResponseSuccess | ResponseError;
