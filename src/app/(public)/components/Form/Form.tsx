@@ -110,7 +110,7 @@ const Form: React.FC = () => {
 					Don&apos;t have an account?{' '}
 					<Link
 						className="text-dark-spring-green underline decoration-dark-spring-green"
-						href={'https://github.com/lucas-wendell'}
+						href={'/signup'}
 					>
 						Sign Up
 					</Link>
