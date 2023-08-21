@@ -4,6 +4,7 @@ import { NextAuthOptions } from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
 import Google from 'next-auth/providers/google';
 import Github from 'next-auth/providers/github';
+import { env } from '../env';
 
 export const authOptions: NextAuthOptions = {
 	providers: [
@@ -29,12 +30,12 @@ export const authOptions: NextAuthOptions = {
 			},
 		}),
 		Google({
-			clientId: process.env.GOOGLE_CLIENT_ID as string,
-			clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+			clientId: env.GOOGLE_CLIENT_ID,
+			clientSecret: env.GOOGLE_CLIENT_SECRET,
 		}),
 		Github({
-			clientId: process.env.GITHUB_CLIENT_ID as string,
-			clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
+			clientId: env.GITHUB_CLIENT_ID,
+			clientSecret: env.GITHUB_CLIENT_SECRET,
 		}),
 	],
 	callbacks: {
