@@ -1,10 +1,12 @@
+import { env } from '../env';
+import type { NextAuthOptions } from 'next-auth';
 import { login, loginWithProvider } from '@/service/login';
-import { NextAuthOptions } from 'next-auth';
 
-import Credentials from 'next-auth/providers/credentials';
 import Google from 'next-auth/providers/google';
 import Github from 'next-auth/providers/github';
-import { env } from '../env';
+import Credentials from 'next-auth/providers/credentials';
+
+import type { UserData } from './auth-types';
 
 export const authOptions: NextAuthOptions = {
 	providers: [
@@ -15,8 +17,11 @@ export const authOptions: NextAuthOptions = {
 				password: { label: 'Password' },
 			},
 			async authorize(credentials) {
-				if (credentials?.email && credentials.password) {
-					const data = await login(credentials);
+				if (credentials?.email && credentials?.password) {
+					const data = await login({
+						email: credentials.email,
+						password: credentials.password,
+					});
 
 					if ('error' in data) throw Error(data.error.message);
 
@@ -30,8 +35,8 @@ export const authOptions: NextAuthOptions = {
 			},
 		}),
 		Google({
-			clientId: env.GOOGLE_CLIENT_ID,
-			clientSecret: env.GOOGLE_CLIENT_SECRET,
+			clientId: process.env.GOOGLE_CLIENT_ID as string,
+			clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
 		}),
 		Github({
 			clientId: env.GITHUB_CLIENT_ID,
@@ -39,23 +44,28 @@ export const authOptions: NextAuthOptions = {
 		}),
 	],
 	callbacks: {
-		async jwt({ token, user, account, ...rest }) {
+		async jwt({ token, user, account }) {
 			user && (token.user = user);
-
 			const isSignIn = user ? true : false;
+
 			if (isSignIn) {
+				const userData = token.user as UserData;
+				if (account?.provider === 'credentials') return userData.response;
 				const data = await loginWithProvider({
 					provider: account?.provider,
 					access_token: account?.access_token,
 				});
 
-				if ('error' in data) throw Error(data.error.message);
+				if ('error' in data.login) throw Error(data.login.error.message);
 
-				token.jwt = data.jwt;
-				token.id = data.user.id;
+				token.jwt = data.login.jwt;
+				token.id = data.login.user.id;
+				return token;
 			}
+
 			return token;
 		},
+
 		async session({ session, token }) {
 			session = { user: { ...(token.user as any) }, jwt: token.jwt } as any;
 

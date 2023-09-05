@@ -32,6 +32,22 @@ type ResponseSuccess = {
 	};
 };
 
+type CredentialsResponseSuccess = {
+	jwt: string;
+	user: {
+		id: number;
+		username: string;
+		email: string;
+		provider: string;
+		confirmed: boolean;
+		blocked: boolean;
+		createdAt: string;
+		updatedAt: string;
+		name: string | null;
+		bio: string | null;
+	};
+};
+
 export type Credentials = {
 	email: string;
 	password: string;
@@ -43,3 +59,4 @@ export type ProviderDependencies = {
 };
 
 export type Response = ResponseSuccess | ResponseError;
+export type CredentialsResponse = CredentialsResponseSuccess | ResponseError;

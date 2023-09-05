@@ -1,30 +1,37 @@
 import { env } from '@/env';
-import { Credentials, ProviderDependencies, Response } from './login-types';
+import type {
+	Credentials,
+	CredentialsResponse,
+	ProviderDependencies,
+	Response,
+} from './login-types';
+
+import { GQL_MUTATION_AUTHENTICATE_USER } from '@/graphql/mutations/auth';
+import { client } from '@/graphql/client';
 
 export const login = async ({
-	email: identifier,
+	email,
 	password,
-}: Credentials): Promise<Response> => {
-	const response = await fetch(`${env.NEXT_PUBLIC_API_URL}/api/auth/local/`, {
-		method: 'POST',
-		body: JSON.stringify({ identifier, password }),
-		headers: {
-			'Content-Type': 'application/json',
+}: Credentials): Promise<CredentialsResponse> => {
+	const data = await client.request<{ login: CredentialsResponse }>(
+		GQL_MUTATION_AUTHENTICATE_USER,
+		{
+			email,
+			password,
 		},
-	});
+	);
 
-	const data = await response.json();
-	return data;
+	return 'login' in data ? { ...data.login } : data;
 };
 
 export const loginWithProvider = async ({
 	provider,
 	access_token,
-}: ProviderDependencies): Promise<Response> => {
+}: ProviderDependencies): Promise<{ login: Response }> => {
 	const response = await fetch(
 		`${env.NEXT_PUBLIC_API_URL}/api/auth/${provider}/callback?access_token=${access_token}`,
 	);
 	const data = await response.json();
 
-	return data;
+	return { login: { ...data } };
 };
