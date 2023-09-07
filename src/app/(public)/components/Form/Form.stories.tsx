@@ -3,8 +3,13 @@ import Form from './Form';
 
 export default {
 	component: Form,
-	title: 'Form/Form',
+	title: 'PublicPages/Components/LoginForm',
 	tags: ['autodocs'],
+	parameters: {
+		nextjs: {
+			appDirectory: true,
+		},
+	},
 } as Meta;
 
 type Story = StoryObj;

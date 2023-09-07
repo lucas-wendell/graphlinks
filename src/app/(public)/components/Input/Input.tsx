@@ -12,7 +12,7 @@ export type Props<T extends FieldValues> = InputHTMLProps & {
 	name: Path<T>;
 	type: InputHTMLProps['type'];
 	placeholder: string;
-	register: UseFormRegister<T>;
+	register?: UseFormRegister<T>;
 	error?: string;
 };
 
@@ -34,7 +34,7 @@ function Input<T extends FieldValues>({
 				className={`flex items-center w-full h-12 p-2 border-2 rounded-md ${border} bg-french-gray/20`}
 			>
 				<input
-					{...register(name)}
+					{...register?.(name)}
 					className="w-full outline-none text-jet placeholder-jet bg-transparent"
 					type={typeState}
 					placeholder={placeholder}

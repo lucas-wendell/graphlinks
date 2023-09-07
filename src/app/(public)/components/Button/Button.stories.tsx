@@ -4,7 +4,7 @@ import { FaGoogle } from 'react-icons/fa';
 
 export default {
 	component: Button,
-	title: 'Form/Button',
+	title: 'PublicPages/Components/Button',
 	tags: ['autodocs'],
 } as Meta<Props>;
 

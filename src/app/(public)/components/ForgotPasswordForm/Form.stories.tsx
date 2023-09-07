@@ -3,8 +3,13 @@ import ForgotPasswordForm from './Form';
 
 export default {
 	component: ForgotPasswordForm,
-	title: 'Form/Form',
+	title: 'PublicPages/Components/ForgotPasswordForm',
 	tags: ['autodocs'],
+	parameters: {
+		nextjs: {
+			appDirectory: true,
+		},
+	},
 } as Meta;
 
 type Story = StoryObj;
