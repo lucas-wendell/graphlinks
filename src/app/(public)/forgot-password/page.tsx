@@ -21,6 +21,14 @@ const ForgotPassword: React.FC<ForgotPasswordProps> = async ({
 						placeholder="blur"
 						blurDataURL="/assets/logo.svg"
 					/>
+					<div className="flex flex-col">
+						<div className="text-jet">
+							<h1 className="font-bold text-xl ">Forget something?</h1>
+							<p className="text-sm">
+								Enter your email to receive password reset instructions.
+							</p>
+						</div>
+					</div>
 				</section>
 				<aside className="max-sm:hidden grow">
 					<figure className="flex items-center justify-center bg-electric-indigo w-full h-full"></figure>
