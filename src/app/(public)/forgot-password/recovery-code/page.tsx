@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import ForgotPasswordForm from '../../components/ForgotPasswordForm/Form';
+import RecoveryCodeForm from '../../components/RecoveryCodeForm/Form';
 
 export type RecoveryCodeProps = {
 	searchParams: Record<string, string | null | undefined>;
@@ -26,7 +26,7 @@ const RecoveryCode: React.FC<RecoveryCodeProps> = async ({ searchParams }) => {
 							Enter your recovery code to reset password.
 						</p>
 					</div>
-					<ForgotPasswordForm />
+					<RecoveryCodeForm />
 				</section>
 				<aside className="max-sm:hidden grow">
 					<figure className="flex items-center justify-center bg-electric-indigo w-full h-full"></figure>
