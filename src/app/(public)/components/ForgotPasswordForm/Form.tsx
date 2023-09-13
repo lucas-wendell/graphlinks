@@ -13,6 +13,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+import { forgotPassword } from '@/service/forgot-password';
 
 const FormSchema = z.object({
 	email: z
@@ -33,12 +34,13 @@ const ForgotPasswordForm: React.FC = () => {
 		resolver: zodResolver(FormSchema),
 	});
 
-	const sendRecoverEmail = async (data: ForgotPasswordFormData) => {
-		console.log('ola mundo!');
+	const sendRecoveryEmail = async ({ email }: ForgotPasswordFormData) => {
+		const response = await forgotPassword(email);
+		if (response.isOk) router.push('/forgot-password/recovery-code');
 	};
 
 	return (
-		<form className="w-full" onSubmit={handleSubmit(sendRecoverEmail)}>
+		<form className="w-full" onSubmit={handleSubmit(sendRecoveryEmail)}>
 			<div className="flex flex-col gap-4">
 				<Input<ForgotPasswordFormData>
 					type="email"
@@ -49,7 +51,7 @@ const ForgotPasswordForm: React.FC = () => {
 				/>
 			</div>
 			<div className="flex flex-col items-center justify-center gap-4 mt-8">
-				<Button text="Send Recover Email" disabled={false} />
+				<Button text="Send Recovery Email" disabled={false} />
 				<p className="text-center text-dark-spring-green">OR</p>
 				<Button
 					type="button"
