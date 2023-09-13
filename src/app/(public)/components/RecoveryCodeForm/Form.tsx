@@ -11,11 +11,24 @@ import { useRouter } from 'next/navigation';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-const FormSchema = z.object({
-	code: z
-		.string()
-		.nonempty('This is a required field, please enter your recovery code'),
-});
+const FormSchema = z
+	.object({
+		code: z
+			.string()
+			.nonempty('This is a required field, please enter your recovery code'),
+		password: z
+			.string()
+			.nonempty('This is a required field, please enter your recovery code')
+			.min(6, 'Password must be more than 6 characters'),
+		confirmPassword: z
+			.string()
+			.nonempty('This is a required field, please enter your recovery code')
+			.min(6, 'Password must be more than 6 characters'),
+	})
+	.refine(data => data.password === data.confirmPassword, {
+		message: "Passwords don't match",
+		path: ['confirmPassword'],
+	});
 
 type RecoveryCodeFormData = z.infer<typeof FormSchema>;
 
@@ -43,9 +56,23 @@ const RecoveryCodeForm: React.FC = () => {
 					name="code"
 					error={errors.code?.message}
 				/>
+				<Input<RecoveryCodeFormData>
+					type="password"
+					placeholder="New Password"
+					register={register}
+					name="password"
+					error={errors.password?.message}
+				/>
+				<Input<RecoveryCodeFormData>
+					type="password"
+					placeholder="Confirm Your New Password"
+					register={register}
+					name="confirmPassword"
+					error={errors.confirmPassword?.message}
+				/>
 			</div>
 			<div className="flex flex-col items-center justify-center gap-4 mt-8">
-				<Button text="Validate Recovery Code" disabled={false} />
+				<Button text="Change Password" disabled={false} />
 			</div>
 		</form>
 	);
