@@ -10,6 +10,9 @@ import { useRouter } from 'next/navigation';
 
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { resetPassword } from '@/service/reset-password';
+import { signIn } from 'next-auth/react';
+import { getCookie, deleteCookie } from 'cookies-next';
 
 const FormSchema = z
 	.object({
@@ -42,8 +45,40 @@ const RecoveryCodeForm: React.FC = () => {
 		resolver: zodResolver(FormSchema),
 	});
 
-	const sendRecoveryEmail = async (data: RecoveryCodeFormData) => {
-		console.log('ola mundo!');
+	const email = getCookie('recoveryEmail');
+	if (!email) {
+		router.push('/forgot-password');
+	}
+
+	const sendRecoveryEmail = async ({
+		code,
+		password,
+		passwordConfirmation,
+	}: RecoveryCodeFormData) => {
+		const response = await resetPassword({
+			code,
+			password,
+			passwordConfirmation,
+		});
+
+		if ('error' in response) return null;
+
+		const result = await signIn('credentials', {
+			email: email,
+			password: password,
+			redirect: false,
+			callbackUrl: '/admin',
+		});
+
+		if (result?.error) {
+			router.push(
+				`forgot-password/recovery-code/?modal=true&title=${result.error}`,
+			);
+			return;
+		}
+
+		deleteCookie('recoveryEmail');
+		router.replace('/admin');
 	};
 
 	return (

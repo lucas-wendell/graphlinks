@@ -1,7 +1,7 @@
 import { gql } from 'graphql-request';
 import { GQL_FRAGMENT_USER } from '../fragments/user';
 
-export const GQL_MUTATION_AUTHENTICATE_USER = gql`
+export const GQL_MUTATION_RESET_PASSWORD = gql`
 	${GQL_FRAGMENT_USER}
 
 	mutation RESET_PASSWORD(
