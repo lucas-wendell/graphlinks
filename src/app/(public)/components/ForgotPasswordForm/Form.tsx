@@ -1,8 +1,8 @@
 'use client';
 
 import React from 'react';
-import Input from '../Input/Input';
 
+import Input from '../Input/Input';
 import Button from '../Button/Button';
 
 import { AiOutlineGoogle } from 'react-icons/ai';
@@ -13,7 +13,9 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+
 import { forgotPassword } from '@/service/forgot-password';
+import { setCookie } from 'cookies-next';
 
 const FormSchema = z.object({
 	email: z
@@ -36,7 +38,10 @@ const ForgotPasswordForm: React.FC = () => {
 
 	const sendRecoveryEmail = async ({ email }: ForgotPasswordFormData) => {
 		const response = await forgotPassword(email);
-		if (response.isOk) router.push('/forgot-password/recovery-code');
+		if (response.isOk) {
+			setCookie('recoveryEmail', email, { secure: true });
+			router.push('/forgot-password/recovery-code');
+		}
 	};
 
 	return (
