@@ -20,14 +20,14 @@ const FormSchema = z
 			.string()
 			.nonempty('This is a required field, please enter your recovery code')
 			.min(6, 'Password must be more than 6 characters'),
-		confirmPassword: z
+		passwordConfirmation: z
 			.string()
 			.nonempty('This is a required field, please enter your recovery code')
 			.min(6, 'Password must be more than 6 characters'),
 	})
-	.refine(data => data.password === data.confirmPassword, {
+	.refine(data => data.password === data.passwordConfirmation, {
 		message: "Passwords don't match",
-		path: ['confirmPassword'],
+		path: ['passwordConfirmation'],
 	});
 
 type RecoveryCodeFormData = z.infer<typeof FormSchema>;
@@ -42,12 +42,12 @@ const RecoveryCodeForm: React.FC = () => {
 		resolver: zodResolver(FormSchema),
 	});
 
-	const sendRecoverEmail = async (data: RecoveryCodeFormData) => {
+	const sendRecoveryEmail = async (data: RecoveryCodeFormData) => {
 		console.log('ola mundo!');
 	};
 
 	return (
-		<form className="w-full" onSubmit={handleSubmit(sendRecoverEmail)}>
+		<form className="w-full" onSubmit={handleSubmit(sendRecoveryEmail)}>
 			<div className="flex flex-col gap-4">
 				<Input<RecoveryCodeFormData>
 					type="text"
@@ -67,8 +67,8 @@ const RecoveryCodeForm: React.FC = () => {
 					type="password"
 					placeholder="Confirm Your New Password"
 					register={register}
-					name="confirmPassword"
-					error={errors.confirmPassword?.message}
+					name="passwordConfirmation"
+					error={errors.passwordConfirmation?.message}
 				/>
 			</div>
 			<div className="flex flex-col items-center justify-center gap-4 mt-8">
