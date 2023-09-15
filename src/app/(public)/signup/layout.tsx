@@ -1,6 +1,6 @@
 export const metadata = {
-	title: 'Sign up',
-	description: 'Create a graphlink account',
+	title: 'Graphlinks | Sign up',
+	description: 'Create a Graphlinks account',
 };
 
 export type SignUpLayoutProps = {

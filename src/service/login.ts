@@ -4,7 +4,7 @@ import type {
 	CredentialsResponse,
 	ProviderDependencies,
 	Response,
-} from './login-types';
+} from './types/login-types';
 
 import { GQL_MUTATION_AUTHENTICATE_USER } from '@/graphql/mutations/auth';
 import { client } from '@/graphql/client';
