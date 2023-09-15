@@ -1,9 +1,9 @@
 import { Meta, StoryObj } from '@storybook/react';
-import Form from './Form';
+import ForgotPasswordForm from './Form';
 
 export default {
-	component: Form,
-	title: 'PublicPages/Components/LoginForm',
+	component: ForgotPasswordForm,
+	title: 'PublicPages/Components/ForgotPasswordForm',
 	tags: ['autodocs'],
 	parameters: {
 		nextjs: {

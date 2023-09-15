@@ -1,9 +1,9 @@
 import { Meta, StoryObj } from '@storybook/react';
-import Form from './Form';
+import RecoveryCodeForm from './Form';
 
 export default {
-	component: Form,
-	title: 'PublicPages/Components/LoginForm',
+	component: RecoveryCodeForm,
+	title: 'PublicPages/Components/RecoveryCodeForm',
 	tags: ['autodocs'],
 	parameters: {
 		nextjs: {
