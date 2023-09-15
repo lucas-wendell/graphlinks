@@ -1,5 +1,9 @@
 import React from 'react';
 import Image from 'next/image';
+
+import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
+
 import RecoveryCodeForm from '../../components/RecoveryCodeForm/Form';
 
 export type RecoveryCodeProps = {
@@ -7,6 +11,11 @@ export type RecoveryCodeProps = {
 };
 
 const RecoveryCode: React.FC<RecoveryCodeProps> = async ({ searchParams }) => {
+	const cookieStore = cookies();
+	const email = cookieStore.get('recoveryEmail');
+
+	if (!email) redirect('/forgot-password');
+
 	return (
 		<>
 			<main className="flex min-w-screen min-h-screen overflow-hidden">

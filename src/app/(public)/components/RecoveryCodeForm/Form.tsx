@@ -45,16 +45,17 @@ const RecoveryCodeForm: React.FC = () => {
 		resolver: zodResolver(FormSchema),
 	});
 
-	const email = getCookie('recoveryEmail');
+	/* const email = getCookie('recoveryEmail');
 	if (!email) {
 		router.push('/forgot-password');
-	}
+	} */
 
 	const sendRecoveryEmail = async ({
 		code,
 		password,
 		passwordConfirmation,
 	}: RecoveryCodeFormData) => {
+		const email = getCookie('recoveryEmail');
 		const response = await resetPassword({
 			code,
 			password,
