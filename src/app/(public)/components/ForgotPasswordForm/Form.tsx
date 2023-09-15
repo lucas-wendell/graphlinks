@@ -5,7 +5,7 @@ import React from 'react';
 import Input from '../Input/Input';
 import Button from '../Button/Button';
 
-import { AiOutlineGoogle } from 'react-icons/ai';
+import { AiFillGithub, AiOutlineGoogle } from 'react-icons/ai';
 import { useForm } from 'react-hook-form';
 
 import { z } from 'zod';
@@ -15,7 +15,7 @@ import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 
 import { forgotPassword } from '@/service/forgot-password';
-import { setCookie } from 'cookies-next';
+import { setCookie, deleteCookie } from 'cookies-next';
 
 const FormSchema = z.object({
 	email: z
@@ -27,6 +27,8 @@ const FormSchema = z.object({
 type ForgotPasswordFormData = z.infer<typeof FormSchema>;
 
 const ForgotPasswordForm: React.FC = () => {
+	deleteCookie('recoveryEmail');
+
 	const router = useRouter();
 	const {
 		register,
@@ -66,6 +68,19 @@ const ForgotPasswordForm: React.FC = () => {
 					disabled={false}
 					onClick={() => {
 						signIn('google', {
+							redirect: false,
+							callbackUrl: '/admin',
+						});
+					}}
+				/>
+				<Button
+					type="button"
+					icon={{ icon: AiFillGithub, className: 'text-[20px]' }}
+					text="continue with github"
+					styleType="secondary"
+					disabled={false}
+					onClick={() => {
+						signIn('github', {
 							redirect: false,
 							callbackUrl: '/admin',
 						});
