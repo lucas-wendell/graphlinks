@@ -11,6 +11,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { type RecoveryCodeFormData, FormSchema } from './schema';
 import { useRecoveryEmail } from './hooks/useRecoveryEmail';
 
+import { FormComposition } from '../Form';
+
 const RecoveryCodeForm: React.FC = () => {
 	const { recoveryEmail } = useRecoveryEmail();
 
@@ -30,8 +32,8 @@ const RecoveryCodeForm: React.FC = () => {
 		recoveryEmail({ code, password, passwordConfirmation });
 
 	return (
-		<form className="w-full" onSubmit={handleSubmit(sendRecoveryEmail)}>
-			<div className="flex flex-col gap-4">
+		<FormComposition.Form onSubmit={handleSubmit(sendRecoveryEmail)}>
+			<FormComposition.Inputs>
 				<Input<RecoveryCodeFormData>
 					type="text"
 					placeholder="Recovery Code"
@@ -53,11 +55,11 @@ const RecoveryCodeForm: React.FC = () => {
 					name="passwordConfirmation"
 					error={errors.passwordConfirmation?.message}
 				/>
-			</div>
-			<div className="flex flex-col items-center justify-center gap-4 mt-8">
+			</FormComposition.Inputs>
+			<FormComposition.Actions moreStyles="mt-8">
 				<Button text="Change Password" disabled={false} />
-			</div>
-		</form>
+			</FormComposition.Actions>
+		</FormComposition.Form>
 	);
 };
 
