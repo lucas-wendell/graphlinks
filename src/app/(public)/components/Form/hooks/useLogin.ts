@@ -1,12 +1,11 @@
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-
-type UseLoginDependencies = { email: string; password: string };
+import { type LoginUserFormData } from '../schema';
 
 export const useLogin = () => {
 	const router = useRouter();
 
-	const login = async ({ email, password }: UseLoginDependencies) => {
+	const login = async ({ email, password }: LoginUserFormData) => {
 		const result = await signIn('credentials', {
 			email,
 			password,
