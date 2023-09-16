@@ -6,7 +6,6 @@ import Input from '../Input/Input';
 import Button from '../Button/Button';
 
 import { AiFillGithub, AiOutlineGoogle } from 'react-icons/ai';
-
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { signIn } from 'next-auth/react';
@@ -14,7 +13,9 @@ import { type ForgotPasswordFormData, FormSchema } from './schema';
 
 import { useForm } from 'react-hook-form';
 import { useSendEmail } from './hooks/useSendEmail';
+
 import { deleteCookie } from 'cookies-next';
+import { FormComposition } from '../Form';
 
 const ForgotPasswordForm: React.FC = () => {
 	deleteCookie('recoveryEmail');
@@ -32,8 +33,8 @@ const ForgotPasswordForm: React.FC = () => {
 		sendEmail({ email });
 
 	return (
-		<form className="w-full" onSubmit={handleSubmit(sendRecoveryEmail)}>
-			<div className="flex flex-col gap-4">
+		<FormComposition.Form onSubmit={handleSubmit(sendRecoveryEmail)}>
+			<FormComposition.Inputs>
 				<Input<ForgotPasswordFormData>
 					type="email"
 					placeholder="E-mail"
@@ -41,8 +42,8 @@ const ForgotPasswordForm: React.FC = () => {
 					name="email"
 					error={errors.email?.message}
 				/>
-			</div>
-			<div className="flex flex-col items-center justify-center gap-4 mt-8">
+			</FormComposition.Inputs>
+			<FormComposition.Actions>
 				<Button text="Send Recovery Email" disabled={false} />
 				<p className="text-center text-dark-spring-green">OR</p>
 				<Button
@@ -71,8 +72,8 @@ const ForgotPasswordForm: React.FC = () => {
 						});
 					}}
 				/>
-			</div>
-		</form>
+			</FormComposition.Actions>
+		</FormComposition.Form>
 	);
 };
 
