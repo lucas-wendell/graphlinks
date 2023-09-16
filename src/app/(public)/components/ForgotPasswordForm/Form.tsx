@@ -14,6 +14,7 @@ import { type ForgotPasswordFormData, FormSchema } from './schema';
 
 import { useForm } from 'react-hook-form';
 import { useSendEmail } from './hooks/useSendEmail';
+import { deleteCookie } from 'cookies-next';
 
 const ForgotPasswordForm: React.FC = () => {
 	deleteCookie('recoveryEmail');
