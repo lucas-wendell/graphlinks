@@ -9,6 +9,14 @@ import type {
 import { GQL_MUTATION_AUTHENTICATE_USER } from '@/graphql/mutations/auth';
 import { client } from '@/graphql/client';
 
+/**
+ * This function login user in application, must be receive user credentials
+ * @summary Function to login user
+ * @async
+ * @function resetPassword
+ * @param {string} email - User email access
+ * @param {string} password - User password
+ */
 export const login = async ({
 	email,
 	password,
