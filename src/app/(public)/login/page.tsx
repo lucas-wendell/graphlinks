@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 
-import Form from '../components/Form/Form';
+import LoginForm from '../components/LoginForm/Form';
 import Link from 'next/link';
 
 import { ModalCompositon } from '../components/Modal';
@@ -41,7 +41,7 @@ const Login: React.FC<LoginProps> = async ({ searchParams }) => {
 							<p className="max-md-phone:text-sm">Log in to your Graphlinks</p>
 						</div>
 					</div>
-					<Form />
+					<LoginForm />
 				</section>
 				<aside className="max-sm:hidden grow">
 					<figure className="flex items-center justify-center bg-electric-indigo w-full h-full"></figure>
