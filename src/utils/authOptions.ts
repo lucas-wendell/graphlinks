@@ -1,12 +1,12 @@
 import { env } from '../env';
-import type { NextAuthOptions } from 'next-auth';
 import { login, loginWithProvider } from '@/service/login';
+
+import type { UserData } from './auth-types';
+import type { NextAuthOptions } from 'next-auth';
 
 import Google from 'next-auth/providers/google';
 import Github from 'next-auth/providers/github';
 import Credentials from 'next-auth/providers/credentials';
-
-import type { UserData } from './auth-types';
 
 export const authOptions: NextAuthOptions = {
 	providers: [
@@ -35,8 +35,8 @@ export const authOptions: NextAuthOptions = {
 			},
 		}),
 		Google({
-			clientId: process.env.GOOGLE_CLIENT_ID as string,
-			clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+			clientId: env.GOOGLE_CLIENT_ID as string,
+			clientSecret: env.GOOGLE_CLIENT_SECRET as string,
 		}),
 		Github({
 			clientId: env.GITHUB_CLIENT_ID,
@@ -51,6 +51,7 @@ export const authOptions: NextAuthOptions = {
 			if (isSignIn) {
 				const userData = token.user as UserData;
 				if (account?.provider === 'credentials') return userData.response;
+
 				const data = await loginWithProvider({
 					provider: account?.provider,
 					access_token: account?.access_token,
