@@ -10,6 +10,7 @@ import { useRouter } from 'next/navigation';
 
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+
 import { resetPassword } from '@/service/reset-password';
 import { signIn } from 'next-auth/react';
 import { getCookie, deleteCookie } from 'cookies-next';
@@ -44,11 +45,6 @@ const RecoveryCodeForm: React.FC = () => {
 	} = useForm<RecoveryCodeFormData>({
 		resolver: zodResolver(FormSchema),
 	});
-
-	/* const email = getCookie('recoveryEmail');
-	if (!email) {
-		router.push('/forgot-password');
-	} */
 
 	const sendRecoveryEmail = async ({
 		code,

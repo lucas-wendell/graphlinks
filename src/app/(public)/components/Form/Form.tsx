@@ -6,30 +6,18 @@ import Input from '../Input/Input';
 import Link from 'next/link';
 import Button from '../Button/Button';
 
-import { AiFillGithub, AiOutlineGoogle } from 'react-icons/ai';
-import { useForm } from 'react-hook-form';
-
-import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-
 import { signIn } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
 
-const loginFormSchema = z.object({
-	email: z
-		.string()
-		.nonempty('E-mail is a required field')
-		.email('E-mail format is not valid'),
-	password: z
-		.string()
-		.nonempty('Password is a required field')
-		.min(6, 'Password must be more than 6 characters'),
-});
+import { AiFillGithub, AiOutlineGoogle } from 'react-icons/ai';
+import { type LoginUserFormData, loginFormSchema } from './schema';
 
-type LoginUserFormData = z.infer<typeof loginFormSchema>;
+import { useForm } from 'react-hook-form';
+import { useLogin } from './hooks/useLogin';
 
 const Form: React.FC = () => {
-	const router = useRouter();
+	const { login } = useLogin();
+
 	const {
 		register,
 		handleSubmit,
@@ -38,20 +26,8 @@ const Form: React.FC = () => {
 		resolver: zodResolver(loginFormSchema),
 	});
 
-	const loginUser = async (data: LoginUserFormData) => {
-		const result = await signIn('credentials', {
-			email: data.email,
-			password: data.password,
-			redirect: false,
-			callbackUrl: '/admin',
-		});
-
-		if (result?.error) {
-			router.push(`login/?modal=true&title=${result.error}`);
-			return;
-		}
-		router.replace('/admin');
-	};
+	const loginUser = async ({ email, password }: LoginUserFormData) =>
+		login({ email, password });
 
 	return (
 		<form className="w-full" onSubmit={handleSubmit(loginUser)}>
