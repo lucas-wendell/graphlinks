@@ -1,5 +1,5 @@
-import { client } from '@/graphql/client';
-import { GQL_MUTATION_FORGOT_PASSWORD } from '@/graphql/mutations/forgot-password';
+import { client } from '../graphql/client';
+import { GQL_MUTATION_FORGOT_PASSWORD } from '../graphql/mutations/forgot-password';
 import { Response } from './types/forgot-password-types';
 
 /**

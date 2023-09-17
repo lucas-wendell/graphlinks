@@ -1,4 +1,4 @@
-import { env } from '@/env';
+import { env } from '../env';
 import type {
 	Credentials,
 	CredentialsResponse,
@@ -6,8 +6,8 @@ import type {
 	Response,
 } from './types/login-types';
 
-import { GQL_MUTATION_AUTHENTICATE_USER } from '@/graphql/mutations/auth';
-import { client } from '@/graphql/client';
+import { GQL_MUTATION_AUTHENTICATE_USER } from '../graphql/mutations/auth';
+import { client } from '../graphql/client';
 
 /**
  * This function login user in application, must be receive user credentials

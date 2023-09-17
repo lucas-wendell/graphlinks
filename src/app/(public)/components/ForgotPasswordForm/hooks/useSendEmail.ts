@@ -1,5 +1,5 @@
 import { type ForgotPasswordFormData } from '../schema';
-import { forgotPassword } from '@/service/forgot-password';
+import { forgotPassword } from '../../../../../service/forgot-password';
 
 import { setCookie } from 'cookies-next';
 import { useRouter } from 'next/navigation';

@@ -1,7 +1,7 @@
 import { type RecoveryCodeFormData } from '../schema';
 
 import { getCookie, deleteCookie } from 'cookies-next';
-import { resetPassword } from '@/service/reset-password';
+import { resetPassword } from '../../../../../service/reset-password';
 
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
