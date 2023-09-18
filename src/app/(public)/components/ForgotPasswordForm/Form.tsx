@@ -6,30 +6,21 @@ import Input from '../Input/Input';
 import Button from '../Button/Button';
 
 import { AiFillGithub, AiOutlineGoogle } from 'react-icons/ai';
-import { useForm } from 'react-hook-form';
-
-import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { signIn } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
+import { type ForgotPasswordFormData, FormSchema } from './schema';
 
-import { forgotPassword } from '@/service/forgot-password';
-import { setCookie, deleteCookie } from 'cookies-next';
+import { useForm } from 'react-hook-form';
+import { useSendEmail } from './hooks/useSendEmail';
 
-const FormSchema = z.object({
-	email: z
-		.string()
-		.nonempty('E-mail is a required field')
-		.email('E-mail format is not valid'),
-});
-
-type ForgotPasswordFormData = z.infer<typeof FormSchema>;
+import { deleteCookie } from 'cookies-next';
+import { FormComposition } from '../Form';
 
 const ForgotPasswordForm: React.FC = () => {
 	deleteCookie('recoveryEmail');
 
-	const router = useRouter();
+	const { sendEmail } = useSendEmail();
 	const {
 		register,
 		handleSubmit,
@@ -38,17 +29,12 @@ const ForgotPasswordForm: React.FC = () => {
 		resolver: zodResolver(FormSchema),
 	});
 
-	const sendRecoveryEmail = async ({ email }: ForgotPasswordFormData) => {
-		const response = await forgotPassword(email);
-		if (response.isOk) {
-			setCookie('recoveryEmail', email, { secure: true });
-			router.push('/forgot-password/recovery-code');
-		}
-	};
+	const sendRecoveryEmail = async ({ email }: ForgotPasswordFormData) =>
+		sendEmail({ email });
 
 	return (
-		<form className="w-full" onSubmit={handleSubmit(sendRecoveryEmail)}>
-			<div className="flex flex-col gap-4">
+		<FormComposition.Form onSubmit={handleSubmit(sendRecoveryEmail)}>
+			<FormComposition.Inputs>
 				<Input<ForgotPasswordFormData>
 					type="email"
 					placeholder="E-mail"
@@ -56,8 +42,8 @@ const ForgotPasswordForm: React.FC = () => {
 					name="email"
 					error={errors.email?.message}
 				/>
-			</div>
-			<div className="flex flex-col items-center justify-center gap-4 mt-8">
+			</FormComposition.Inputs>
+			<FormComposition.Actions>
 				<Button text="Send Recovery Email" disabled={false} />
 				<p className="text-center text-dark-spring-green">OR</p>
 				<Button
@@ -86,8 +72,8 @@ const ForgotPasswordForm: React.FC = () => {
 						});
 					}}
 				/>
-			</div>
-		</form>
+			</FormComposition.Actions>
+		</FormComposition.Form>
 	);
 };
 
