@@ -6,8 +6,9 @@ import Link from 'next/link';
 
 import { ModalCompositon } from '../components/Modal';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/utils/authOptions';
-import { PageFormTemplate } from '../components/PageFormTemplate/PageFormTemplate';
+
+import { authOptions } from '../../../utils/authOptions';
+import PageFormTemplate from '../components/PageFormTemplate/PageFormTemplate';
 
 export type LoginProps = {
 	searchParams: Record<string, string | null | undefined>;

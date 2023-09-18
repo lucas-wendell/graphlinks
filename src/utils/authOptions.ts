@@ -1,5 +1,5 @@
 import { env } from '../env';
-import { login, loginWithProvider } from '@/service/login';
+import { login, loginWithProvider } from '../service/login';
 
 import type { UserData } from './auth-types';
 import type { NextAuthOptions } from 'next-auth';

@@ -1,6 +1,6 @@
 import React from 'react';
 import ForgotPasswordForm from '../components/ForgotPasswordForm/Form';
-import { PageFormTemplate } from '../components/PageFormTemplate/PageFormTemplate';
+import PageFormTemplate from '../components/PageFormTemplate/PageFormTemplate';
 
 export type ForgotPasswordProps = {
 	searchParams: Record<string, string | null | undefined>;

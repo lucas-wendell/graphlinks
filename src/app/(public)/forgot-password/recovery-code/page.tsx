@@ -4,7 +4,7 @@ import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
 import RecoveryCodeForm from '../../components/RecoveryCodeForm/Form';
-import { PageFormTemplate } from '../../components/PageFormTemplate/PageFormTemplate';
+import PageFormTemplate from '../../components/PageFormTemplate/PageFormTemplate';
 
 export type RecoveryCodeProps = {
 	searchParams: Record<string, string | null | undefined>;
