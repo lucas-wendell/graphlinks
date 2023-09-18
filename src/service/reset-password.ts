@@ -1,8 +1,8 @@
 import type { CredentialsResponse } from './types/login-types';
 import type { ResetPasswordDependencies } from './types/reset-password-types';
 
-import { client } from '@/graphql/client';
-import { GQL_MUTATION_RESET_PASSWORD } from '@/graphql/mutations/reset-password';
+import { client } from '../graphql/client';
+import { GQL_MUTATION_RESET_PASSWORD } from '../graphql/mutations/reset-password';
 
 /**
  * Function to reset user password
