@@ -1,14 +1,25 @@
 'use client';
 
-import React from 'react';
-
+import React, { useState } from 'react';
+import { motion, spring } from 'framer-motion';
 export type Props = {};
 
 const ToggleButton: React.FC<Props> = ({}) => {
+	const [isActive, setIsActive] = useState(false);
+
 	return (
-		<button className="absolute bg-dark-spring-green rounded-full py-0.5 w-14">
-			<span></span>
-		</button>
+		<motion.button
+			onClick={() => setIsActive(prev => !prev)}
+			className={`flex ${isActive ? 'justify-end' : 'justify-start'} bg-${
+				isActive ? 'dark-spring-green' : 'french-gray'
+			} rounded-full py-1 px-1 h-max w-14 transition-colors`}
+		>
+			<motion.span
+				layout
+				transition={spring}
+				className="w-5 h-5 rounded-full bg-ghost-gray"
+			></motion.span>
+		</motion.button>
 	);
 };
 
