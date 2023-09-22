@@ -5,8 +5,8 @@ export default {
 	component: LinkInput,
 	title: 'AdminPages/Components/LinkInput',
 	tags: ['autodocs'],
-} as Meta<Props>;
+} as Meta<Props<{}>>;
 
-type Story = StoryObj<Props>;
+type Story = StoryObj<Props<{}>>;
 
 export const Primary: Story = {};

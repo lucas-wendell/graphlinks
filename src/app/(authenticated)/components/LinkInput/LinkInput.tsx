@@ -1,30 +1,46 @@
 'use client';
 
 import { Pencil } from 'lucide-react';
-import React, { useRef } from 'react';
+import React, { type InputHTMLAttributes, useRef } from 'react';
+import type { FieldValues, Path, UseFormRegister } from 'react-hook-form';
 
-export type Props = {};
+export type Props<T extends FieldValues> =
+	InputHTMLAttributes<HTMLInputElement> & {
+		name: Path<T>;
+		link?: string;
+		register?: UseFormRegister<T>;
+		error?: string;
+	};
 
-const LinkInput: React.FC<Props> = ({}) => {
+function LinkInput<T extends FieldValues>({
+	name,
+	link,
+	register,
+	error,
+	...rest
+}: Props<T>) {
 	const inputRef = useRef<null | HTMLInputElement>(null);
 
 	return (
-		<form className="flex gap-2 max-w-min">
+		<div className="flex gap-2 max-w-min">
 			<input
+				{...register?.(name)}
 				ref={inputRef}
 				className="outline-none border-2 pl-1 border-jet rounded-sm"
 				type="text"
+				{...rest}
 			/>
 			<button
 				onClick={() => {
 					inputRef.current?.focus();
 				}}
+				type="button"
 				className="flex justify-center items-center p-1 border-2 border-jet rounded-sm transition-colors hover:bg-jet hover:text-ghost-gray"
 			>
 				<Pencil size={16} />
 			</button>
-		</form>
+		</div>
 	);
-};
+}
 
 export default LinkInput;
