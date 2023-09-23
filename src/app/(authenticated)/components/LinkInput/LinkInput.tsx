@@ -29,7 +29,7 @@ function LinkInput<T extends FieldValues>({
 					ref={inputRef}
 					className={`outline-none border-2 pl-1 border-${
 						error ? 'crimson' : 'jet'
-					}  rounded-sm`}
+					}  rounded-sm bg-transparent`}
 					type="text"
 					{...rest}
 				/>
