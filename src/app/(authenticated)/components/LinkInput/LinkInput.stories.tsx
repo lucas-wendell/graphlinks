@@ -10,3 +10,9 @@ export default {
 type Story = StoryObj<Props<{}>>;
 
 export const Primary: Story = {};
+
+export const WithError: Story = {
+	args: {
+		error: 'Error',
+	},
+};
