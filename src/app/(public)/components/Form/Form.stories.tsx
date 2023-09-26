@@ -1,7 +1,7 @@
 import { Meta } from '@storybook/react';
 import { FormComposition } from '.';
 
-import Button from '../Button/Button';
+import Button from '../../../shared-components/Button/Button';
 import Input from '../Input/Input';
 
 export default {

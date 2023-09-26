@@ -4,7 +4,7 @@ import React from 'react';
 import Input from '../Input/Input';
 
 import Link from 'next/link';
-import Button from '../Button/Button';
+import Button from '../../../shared-components/Button/Button';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { signIn } from 'next-auth/react';
