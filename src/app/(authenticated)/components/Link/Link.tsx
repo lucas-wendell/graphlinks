@@ -13,7 +13,9 @@ const Link: React.FC = () => {
 		<div className="w-full rounded-xl bg-ghost-gray p-5">
 			<div className="w-full h-full flex justify-between items-center ">
 				<div className="flex gap-2">
-					<GripVertical className="self-center text-jet" />
+					<div className="flex grow cursor-grabbing">
+						<GripVertical className="self-center text-jet" />
+					</div>
 					<LinkForm />
 				</div>
 				<div className="flex flex-col gap-3">
