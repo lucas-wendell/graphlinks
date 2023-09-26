@@ -8,6 +8,8 @@ const ToggleButton: React.FC<Props> = ({}) => {
 	const [isActive, setIsActive] = useState(false);
 	return (
 		<motion.button
+			title="Toggle Link Status"
+			aria-label="Toggle Link Status"
 			onClick={() => setIsActive(prev => !prev)}
 			className={`flex ${isActive ? 'justify-end' : 'justify-start'} ${
 				isActive ? 'bg-dark-spring-green' : 'bg-jet'

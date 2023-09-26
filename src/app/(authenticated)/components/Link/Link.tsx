@@ -18,7 +18,13 @@ const Link: React.FC = () => {
 				</div>
 				<div className="flex flex-col gap-3">
 					<ToggleButton />
-					<Trash2 size={22} className="self-end text-jet" />
+					<button
+						title="Delete Link"
+						aria-label="Delete Link"
+						className="bg-none p-1 pr-0 self-end text-jet"
+					>
+						<Trash2 size={22} />
+					</button>
 				</div>
 			</div>
 		</div>

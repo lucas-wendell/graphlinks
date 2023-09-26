@@ -34,6 +34,8 @@ function LinkInput<T extends FieldValues>({
 					{...rest}
 				/>
 				<button
+					title="Edit Input Value"
+					aria-label="Edit Input Value"
 					onClick={() => {
 						inputRef.current?.focus();
 					}}
