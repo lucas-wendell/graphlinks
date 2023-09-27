@@ -1,12 +1,12 @@
 import { Meta } from '@storybook/react';
 import { FormComposition } from '.';
 
-import Button from '../../../shared-components/Button/Button';
+import Button from '../Button/Button';
 import Input from '../Input/Input';
 
 export default {
 	component: FormComposition.Form,
-	title: 'PublicPages/Components/BaseForm',
+	title: 'SharedComponents/Components/BaseForm',
 	tags: ['autodocs'],
 	parameters: {
 		nextjs: {
