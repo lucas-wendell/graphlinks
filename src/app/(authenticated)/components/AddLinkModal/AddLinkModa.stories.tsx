@@ -1,4 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
+import { createReactComponent } from '../../utils/createReactComponent';
+
+import Providers from '../../Providers';
 import AddLinkModal, { Props } from './AddLinkModal';
 
 export default {
@@ -9,4 +12,6 @@ export default {
 
 type Story = StoryObj<Props>;
 
-export const Primary: Story = {};
+export const Primary: Story = {
+	decorators: [Story => <Providers>{createReactComponent(Story)}</Providers>],
+};
