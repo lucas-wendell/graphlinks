@@ -9,7 +9,7 @@ export type Props = {};
 
 const Navbar: React.FC<Props> = ({}) => {
 	return (
-		<div className="fixed top-3 left-3 right-3">
+		<div className="fixed top-3 left-3 right-3 z-50">
 			<NavBarComposition.Root>
 				<NavBarComposition.Nav logo={true}>
 					<NavbarButtonCompositon.Root
