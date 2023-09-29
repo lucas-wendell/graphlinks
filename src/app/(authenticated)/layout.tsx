@@ -24,7 +24,7 @@ export default async function RootLayout({
 	} */
 	return (
 		<Providers>
-			<div className="min-w-screen min-h-screen bg-french-gray/50">
+			<div className="min-w-screen min-h-screen ">
 				<Navbar />
 				{children}
 			</div>
