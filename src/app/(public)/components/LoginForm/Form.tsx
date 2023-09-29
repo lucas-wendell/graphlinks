@@ -1,10 +1,10 @@
 'use client';
 
 import React from 'react';
-import Input from '../Input/Input';
+import Input from '../../../shared-components/Input/Input';
 
 import Link from 'next/link';
-import Button from '../Button/Button';
+import Button from '../../../shared-components/Button/Button';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { signIn } from 'next-auth/react';
@@ -14,7 +14,7 @@ import { type LoginUserFormData, loginFormSchema } from './schema';
 
 import { useForm } from 'react-hook-form';
 import { useLogin } from './hooks/useLogin';
-import { FormComposition } from '../Form';
+import { FormComposition } from '../../../shared-components/Form';
 
 const LoginForm: React.FC = () => {
 	const { login } = useLogin();

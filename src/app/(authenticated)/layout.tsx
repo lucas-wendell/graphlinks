@@ -1,7 +1,9 @@
 import { authOptions } from '@/utils/authOptions';
 import { getServerSession } from 'next-auth';
 
+import Providers from './Providers';
 import { redirect } from 'next/navigation';
+
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -19,5 +21,9 @@ export default async function RootLayout({
 	if (!session) {
 		redirect('/login');
 	}
-	return <div>{children}</div>;
+	return (
+		<Providers>
+			<div>{children}</div>
+		</Providers>
+	);
 }
