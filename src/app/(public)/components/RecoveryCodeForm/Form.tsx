@@ -2,8 +2,8 @@
 
 import React from 'react';
 
-import Input from '../Input/Input';
-import Button from '../Button/Button';
+import Input from '../../../shared-components/Input/Input';
+import Button from '../../../shared-components/Button/Button';
 
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -11,7 +11,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { type RecoveryCodeFormData, FormSchema } from './schema';
 import { useRecoveryEmail } from './hooks/useRecoveryEmail';
 
-import { FormComposition } from '../Form';
+import { FormComposition } from '../../../shared-components/Form';
 
 const RecoveryCodeForm: React.FC = () => {
 	const { recoveryEmail } = useRecoveryEmail();

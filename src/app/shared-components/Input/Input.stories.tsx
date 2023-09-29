@@ -8,7 +8,7 @@ type MockType = {
 
 export default {
 	component: Input,
-	title: 'PublicPages/Components/Input',
+	title: 'SharedComponents/Components/Input',
 	tags: ['autodocs'],
 	argTypes: {
 		type: {

@@ -2,8 +2,8 @@
 
 import React from 'react';
 
-import Input from '../Input/Input';
-import Button from '../Button/Button';
+import Input from '../../../shared-components/Input/Input';
+import Button from '../../../shared-components/Button/Button';
 
 import { AiFillGithub, AiOutlineGoogle } from 'react-icons/ai';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -15,7 +15,7 @@ import { useForm } from 'react-hook-form';
 import { useSendEmail } from './hooks/useSendEmail';
 
 import { deleteCookie } from 'cookies-next';
-import { FormComposition } from '../Form';
+import { FormComposition } from '../../../shared-components/Form';
 
 const ForgotPasswordForm: React.FC = () => {
 	deleteCookie('recoveryEmail');
