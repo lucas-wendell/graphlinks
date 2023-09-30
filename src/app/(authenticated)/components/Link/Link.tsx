@@ -10,9 +10,9 @@ export type Props = {};
 
 const Link: React.FC = () => {
 	return (
-		<div className="w-full rounded-xl bg-ghost-gray p-5">
-			<div className="w-full h-full flex justify-between items-center ">
-				<div className="flex gap-2">
+		<div className="w-full rounded-xl bg-ghost-gray p-5 max-sm:p-3">
+			<div className="w-full h-full flex justify-between items-center">
+				<div className="flex gap-2 max-[345px]:gap-1">
 					<div className="flex grow cursor-grabbing">
 						<GripVertical className="self-center text-jet" />
 					</div>
