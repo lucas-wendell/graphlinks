@@ -36,11 +36,16 @@ const Navbar: React.FC<Props> = ({}) => {
 					href="https://github.com/lucas-wendell"
 					className="p-0.5 border-2 border-transparent duration-150 transition-colors ease-in hover:border-french-gray rounded-full"
 				>
+					{/* <div>
+
+					</div> */}
 					<Image
-						className="rounded-full"
+						className="rounded-full max-[400px]:w-6 max-[400px]:h-6"
 						src={logoSquare}
 						width={35}
 						height={35}
+						// layout="fill"
+						// objectFit="cover"
 						alt="user image"
 					/>
 				</Link>

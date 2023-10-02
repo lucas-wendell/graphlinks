@@ -9,7 +9,7 @@ interface IconProps extends LucideProps {
 const Icon: React.FC<IconProps> = ({ name, ...props }) => {
 	const LucideIcon = dynamic(dynamicIconImports[name]);
 
-	return <LucideIcon {...props} />;
+	return <LucideIcon className="max-[400px]:w-4 max-[400px]:h-4 " {...props} />;
 };
 
 export default Icon;
