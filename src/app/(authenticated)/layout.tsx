@@ -24,10 +24,13 @@ export default async function RootLayout({
 	} */
 	return (
 		<Providers>
-			<div className="min-w-screen min-h-screen ">
-				<Navbar />
-				{children}
-			</div>
+			<Navbar />
+			<main className="flex min-w-screen min-h-screen overflow-hidden bg-french-gray/50">
+				<section className="flex flex-col justify-center items-center basis-9/12 max-sm:basis-full relative gap-10 p-3 pt-28 max-lg:basis-8/12">
+					{children}
+				</section>
+				<aside className="flex items-center justify-center border-l border-french-gray max-sm:hidden grow"></aside>
+			</main>
 		</Providers>
 	);
 }
