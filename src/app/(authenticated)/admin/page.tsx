@@ -3,7 +3,7 @@ import AddLink from '../components/AddLink/AddLink';
 
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/utils/authOptions';
-import Links from '../Links/Links';
+import Links from '../components/Links/Links';
 
 const Admin: React.FC = async () => {
 	const session = await getServerSession(authOptions);

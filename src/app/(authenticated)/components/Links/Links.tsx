@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from '../components/Link/Link';
+import Link from '../Link/Link';
 
 const Links: React.FC = () => {
 	return (
