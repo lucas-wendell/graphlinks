@@ -35,7 +35,7 @@ const LinkForm: React.FC<Props> = ({}) => {
 		<form
 			ref={formRef}
 			onSubmit={handleSubmit(onSubmit)}
-			className="flex flex-col gap-2"
+			className="flex flex-col gap-2 max-[345px]:gap-1"
 		>
 			<LinkInput<LinkFormSchema>
 				register={register}

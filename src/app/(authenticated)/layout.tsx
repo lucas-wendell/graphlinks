@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth';
 
 import Providers from './Providers';
 import { redirect } from 'next/navigation';
+import Navbar from './components/NavbarAdmin/Navbar';
 
 import type { Metadata } from 'next';
 
@@ -17,13 +18,16 @@ export default async function RootLayout({
 	children: React.ReactNode;
 }) {
 	const session = await getServerSession(authOptions);
-
+	/* 
 	if (!session) {
 		redirect('/login');
-	}
+	} */
 	return (
 		<Providers>
-			<div>{children}</div>
+			<div className="min-w-screen min-h-screen ">
+				<Navbar />
+				{children}
+			</div>
 		</Providers>
 	);
 }
