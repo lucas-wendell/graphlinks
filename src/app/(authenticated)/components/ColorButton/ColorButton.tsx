@@ -6,7 +6,7 @@ import { ColorPicketWidgetContext } from '../../contexts/ColoPickerWidget';
 
 export type Props = {};
 
-const ColorInput: React.FC<Props> = ({}) => {
+const ColorButton: React.FC<Props> = ({}) => {
 	const { widgetVisibility, setWidgetVisibility, color } = useContext(
 		ColorPicketWidgetContext,
 	);
@@ -33,4 +33,4 @@ const ColorInput: React.FC<Props> = ({}) => {
 	);
 };
 
-export default ColorInput;
+export default ColorButton;

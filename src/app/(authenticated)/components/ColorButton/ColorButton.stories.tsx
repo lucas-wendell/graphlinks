@@ -1,11 +1,11 @@
 import { Meta, StoryObj } from '@storybook/react';
-import ColorInput, { type Props } from './ColorInput';
+import ColorButton, { type Props } from './ColorButton';
 import Providers from '../../Providers';
 import { createReactComponent } from '../../utils/createReactComponent';
 
 export default {
-	component: ColorInput,
-	title: 'AdminPages/Components/ColorInput',
+	component: ColorButton,
+	title: 'AdminPages/Components/ColorButton',
 	tags: ['autodocs'],
 } as Meta<Props>;
 
