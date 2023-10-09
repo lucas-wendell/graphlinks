@@ -1,18 +1,18 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { Chrome } from '@uiw/react-color';
+import { ColorPicketWidgetContext } from '../../contexts/ColoPickerWidget';
 
 const ColorPickerWidget: React.FC = () => {
-	const [hex, setHex] = useState('#04001E');
+	const { color, setColor } = useContext(ColorPicketWidgetContext);
+
 	return (
 		<Chrome
-			className="absolute left-[15%]  top-2/4"
+			className="absolute left-[15%] top-2/4"
 			style={{ marginLeft: 20 }}
-			color={hex}
-			onChange={color => {
-				setHex(color.hex);
-			}}
+			color={color}
+			onChange={color => setColor(color.hex)}
 		/>
 	);
 };
