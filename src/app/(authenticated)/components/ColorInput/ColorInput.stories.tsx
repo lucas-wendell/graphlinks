@@ -1,5 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 import ColorInput, { type Props } from './ColorInput';
+import Providers from '../../Providers';
+import { createReactComponent } from '../../utils/createReactComponent';
 
 export default {
 	component: ColorInput,
@@ -9,4 +11,6 @@ export default {
 
 type Story = StoryObj<Props>;
 
-export const Primary: Story = {};
+export const Primary: Story = {
+	decorators: [Story => <Providers>{createReactComponent(Story)}</Providers>],
+};
