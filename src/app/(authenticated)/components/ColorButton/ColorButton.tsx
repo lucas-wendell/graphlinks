@@ -14,8 +14,9 @@ const ColorButton: React.FC<Props> = ({}) => {
 	return (
 		<>
 			<button
+				type="button"
 				onClick={() => setWidgetVisibility(true)}
-				className="z-10 border-2 border-jet w-14 h-14 rounded-lg relative"
+				className="z-10 border-2 border-french-gray focus:border-jet w-14 h-14 rounded-lg relative"
 			>
 				<span
 					className="left-0.5 top-0.5 bottom-0.5 right-0.5 rounded-md absolute"
