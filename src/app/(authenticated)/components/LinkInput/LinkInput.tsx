@@ -6,6 +6,7 @@ import type {
 	FieldValues,
 	Path,
 	RefCallBack,
+	RegisterOptions,
 	UseFormRegister,
 } from 'react-hook-form';
 
@@ -15,6 +16,9 @@ export type Props<T extends FieldValues> =
 		link?: string;
 		register?: UseFormRegister<T>;
 		error?: string;
+		registerOptions?:
+			| RegisterOptions<T, (string | undefined) & Path<T>>
+			| undefined;
 	};
 
 function LinkInput<T extends FieldValues>({
@@ -22,6 +26,7 @@ function LinkInput<T extends FieldValues>({
 	link,
 	register,
 	error,
+	registerOptions,
 	...rest
 }: Props<T>) {
 	const inputRef = useRef<null | HTMLInputElement>(null);
@@ -29,7 +34,7 @@ function LinkInput<T extends FieldValues>({
 	let restRegister: undefined | Omit<UseFormRegister<T>, 'ref'> = undefined;
 
 	if (register) {
-		const { ref, ...rest } = register(name);
+		const { ref, ...rest } = register(name, { ...registerOptions });
 		restRegister = rest;
 		registerRef = ref;
 	}

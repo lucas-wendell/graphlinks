@@ -14,7 +14,7 @@ export const linkFormSchema = z.object({
 	name: z.string().nonempty('You must indentifier your link'),
 });
 
-export type LinkFormSchema = z.infer<typeof linkFormSchema>;
+export type LinkFormData = z.infer<typeof linkFormSchema>;
 
 const LinkForm: React.FC<Props> = ({}) => {
 	const formRef = useRef<null | HTMLFormElement>(null);
@@ -23,11 +23,13 @@ const LinkForm: React.FC<Props> = ({}) => {
 		register,
 		handleSubmit,
 		formState: { errors },
-	} = useForm<LinkFormSchema>({
+	} = useForm<LinkFormData>({
+		mode: 'onBlur',
+		reValidateMode: 'onChange',
 		resolver: zodResolver(linkFormSchema),
 	});
 
-	const onSubmit = ({ name, link }: LinkFormSchema) => {
+	const onSubmit = ({ name, link }: LinkFormData) => {
 		console.log({ name, link });
 	};
 
@@ -37,18 +39,18 @@ const LinkForm: React.FC<Props> = ({}) => {
 			onSubmit={handleSubmit(onSubmit)}
 			className="flex flex-col gap-2 max-[345px]:gap-1"
 		>
-			<LinkInput<LinkFormSchema>
+			<LinkInput<LinkFormData>
 				register={register}
 				error={errors.name?.message}
 				name="name"
-				onBlur={() => formRef.current?.submit()}
+				registerOptions={{ onBlur: handleSubmit(onSubmit) }}
 			/>
-			<LinkInput<LinkFormSchema>
+			<LinkInput<LinkFormData>
 				register={register}
 				error={errors.link?.message}
 				name="link"
 				link="https://github.com"
-				onBlur={() => formRef.current?.submit()}
+				registerOptions={{ onBlur: handleSubmit(onSubmit) }}
 			/>
 		</form>
 	);
