@@ -1,16 +1,15 @@
 'use client';
 
-import { InputHTMLAttributes, useState } from 'react';
+import { useState } from 'react';
 import { BsEye, BsEyeSlash } from 'react-icons/bs';
 
-import {
+import type {
 	FieldValues,
 	Path,
 	RegisterOptions,
 	UseFormRegister,
 } from 'react-hook-form';
-
-type InputHTMLProps = InputHTMLAttributes<HTMLInputElement>;
+import type { InputHTMLProps } from '../../../utils/shared-types/HTMLTypes';
 
 export type Props<T extends FieldValues> = InputHTMLProps & {
 	name: Path<T>;

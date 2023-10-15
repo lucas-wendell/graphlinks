@@ -1,7 +1,9 @@
 'use client';
 
+import type { InputHTMLProps } from '../../../../utils/shared-types/HTMLTypes';
 import { Pencil } from 'lucide-react';
-import React, { type InputHTMLAttributes, useRef } from 'react';
+
+import React, { useRef } from 'react';
 import type {
 	FieldValues,
 	Path,
@@ -10,16 +12,15 @@ import type {
 	UseFormRegister,
 } from 'react-hook-form';
 
-export type Props<T extends FieldValues> =
-	InputHTMLAttributes<HTMLInputElement> & {
-		name: Path<T>;
-		link?: string;
-		register?: UseFormRegister<T>;
-		error?: string;
-		registerOptions?:
-			| RegisterOptions<T, (string | undefined) & Path<T>>
-			| undefined;
-	};
+export type Props<T extends FieldValues> = InputHTMLProps & {
+	name: Path<T>;
+	link?: string;
+	register?: UseFormRegister<T>;
+	error?: string;
+	registerOptions?:
+		| RegisterOptions<T, (string | undefined) & Path<T>>
+		| undefined;
+};
 
 function LinkInput<T extends FieldValues>({
 	name,
