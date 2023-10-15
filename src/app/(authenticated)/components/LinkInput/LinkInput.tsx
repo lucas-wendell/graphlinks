@@ -2,7 +2,12 @@
 
 import { Pencil } from 'lucide-react';
 import React, { type InputHTMLAttributes, useRef } from 'react';
-import type { FieldValues, Path, UseFormRegister } from 'react-hook-form';
+import type {
+	FieldValues,
+	Path,
+	RefCallBack,
+	UseFormRegister,
+} from 'react-hook-form';
 
 export type Props<T extends FieldValues> =
 	InputHTMLAttributes<HTMLInputElement> & {
@@ -20,13 +25,24 @@ function LinkInput<T extends FieldValues>({
 	...rest
 }: Props<T>) {
 	const inputRef = useRef<null | HTMLInputElement>(null);
+	let registerRef: undefined | RefCallBack = undefined;
+	let restRegister: undefined | Omit<UseFormRegister<T>, 'ref'> = undefined;
+
+	if (register) {
+		const { ref, ...rest } = register(name);
+		restRegister = rest;
+		registerRef = ref;
+	}
 
 	return (
 		<div>
 			<div className="flex gap-2 max-w-min">
 				<input
-					{...register?.(name)}
-					ref={inputRef}
+					{...restRegister}
+					ref={e => {
+						registerRef?.(e);
+						inputRef.current = e;
+					}}
 					className={`outline-none border-2 pl-1 border-${
 						error ? 'crimson' : 'jet'
 					}  rounded-sm bg-transparent max-sm:w-52 max-[400px]:w-40 max-[345px]:w-32`}
