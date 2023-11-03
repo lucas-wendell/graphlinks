@@ -5,6 +5,15 @@ export default {
 	component: LinksPreview,
 	title: 'SharedComponents/Components/LinksPreview',
 	tags: ['autodocs'],
+	argTypes: {
+		type: {
+			options: ['fill', 'outline', 'softShadow', 'hardShadow'],
+			control: { type: 'radio' },
+		},
+	},
+	args: {
+		type: 'fill',
+	},
 } as Meta<Props>;
 
 type Story = StoryObj<Props>;

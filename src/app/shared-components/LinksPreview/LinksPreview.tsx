@@ -1,38 +1,36 @@
+'use client';
+
 import React from 'react';
-import { tv } from 'tailwind-variants';
+import LinksPrototype, {
+	type Props as LinksPrototypeProps,
+} from '../LinksPrototype/LinksPrototype';
+import { transformCamelCase } from './utils/transformCamelCase';
 
 export type Props = {
-	isActive: boolean;
-	borderRadius: 'normal' | 'rounded' | 'fullRounded';
-	type: 'fill' | 'outline' | 'softShadow' | 'hardShadow';
+	type: LinksPrototypeProps['styleType'];
 };
 
-const componentVariants = tv({
-	base: 'h-full w-full border border-black',
-	variants: {
-		borderRadius: {
-			normal: 'rounded-none',
-			rounded: 'rounded-md',
-			fullRounded: 'rounded-full',
-		},
-		shadow: {
-			softShadow: 'bg-white shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)]',
-			hardShadow: 'bg-white shadow-[5px_5px_0px_0px_rgba(0,0,0)]',
-			outline: 'bg-transparent',
-			fill: 'bg-black',
-		},
-	},
-});
+const LinksPreview: React.FC<Props> = ({ type = 'fill' }) => {
+	const borders: Array<LinksPrototypeProps['borderRadius']> = [
+		'normal',
+		'rounded',
+		'fullRounded',
+	];
 
-const LinksPreview: React.FC<Props> = ({ isActive, borderRadius, type }) => {
 	return (
-		<button
-			className={`w-full h-20 p-3 ${
-				isActive ? 'border-2' : ''
-			} border-french-gray rounded-md cursor-pointer`}
-		>
-			<div className={componentVariants({ borderRadius, shadow: type })}></div>
-		</button>
+		<div>
+			<p className="text-jet capitalize mb-2">{transformCamelCase(type)}</p>
+			<div className="flex gap-3">
+				{borders.map((border, index) => (
+					<LinksPrototype
+						borderRadius={border}
+						isActive={border === 'rounded'}
+						styleType={type}
+						key={`${border}-${index}`}
+					/>
+				))}
+			</div>
+		</div>
 	);
 };
 
