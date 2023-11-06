@@ -12,7 +12,7 @@ export default {
 
 export const Primary = () => (
 	<ConfigBlockComposition.Root name="button">
-		<ConfigBlockComposition.Content>Test</ConfigBlockComposition.Content>
+		<ConfigBlockComposition.Content>teste</ConfigBlockComposition.Content>
 		<ConfigBlockComposition.ColorForms>
 			<ColorForm name="button color" />
 			<ColorForm name="button text color" />
