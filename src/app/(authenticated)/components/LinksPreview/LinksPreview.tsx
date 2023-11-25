@@ -4,7 +4,7 @@ import React from 'react';
 import LinksPrototype, {
 	type Props as LinksPrototypeProps,
 } from '../LinksPrototype/LinksPrototype';
-import { transformCamelCase } from './utils/transformCamelCase';
+import { transformCamelCase } from '../../../../utils/transformCamelCase';
 
 export type Props = {
 	type: LinksPrototypeProps['styleType'];
