@@ -1,6 +1,7 @@
 import type { ButtonHTMLProps } from '../../../../utils/shared-types/HTMLTypes';
 import { tv } from 'tailwind-variants';
 import React from 'react';
+import { transformCamelCase } from '../../../../utils/transformCamelCase';
 
 export type Props = {
 	styleType: 'flat' | 'gradient';
@@ -19,13 +20,14 @@ const componentVariants = tv({
 
 const BackgroundPrototype: React.FC<Props> = ({ styleType, isActive }) => {
 	return (
-		<button
-			className={`flex-1 rounded-md h-48 min-w-[130px] ${
-				isActive ? 'border-2 p-2' : ''
-			}`}
-		>
-			<div className={componentVariants({ styleType })} />
-		</button>
+		<div className="flex flex-col items-center gap-1 flex-1 h-56 min-w-[130px] ">
+			<div
+				className={`w-full h-full rounded-md ${isActive ? 'border-2 p-2' : ''}`}
+			>
+				<button className={componentVariants({ styleType })}></button>
+			</div>
+			<p className="text-jet capitalize">{transformCamelCase(styleType)}</p>
+		</div>
 	);
 };
 
