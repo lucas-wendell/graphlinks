@@ -1,6 +1,7 @@
-import React, { ButtonHTMLAttributes, ElementType } from 'react';
+import type { ButtonHTMLProps } from '../../../utils/shared-types/HTMLTypes';
+import React, { type ElementType } from 'react';
 
-export type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
+export type Props = ButtonHTMLProps & {
 	text: string;
 	styleType?: 'primary' | 'secondary';
 	icon?: { icon: ElementType; className?: string };
