@@ -3,20 +3,17 @@ import AddLink from '../components/AddLink/AddLink';
 
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/utils/authOptions';
-import Links from '../Links/Links';
+import Links from '../components/Links/Links';
 
 const Admin: React.FC = async () => {
 	const session = await getServerSession(authOptions);
 	console.log('session ---->', session);
 
 	return (
-		<main className="flex min-w-screen min-h-screen overflow-hidden bg-french-gray/50">
-			<section className="flex flex-col justify-center items-center basis-9/12 max-sm:basis-full relative gap-10 p-3 pt-28 max-lg:basis-8/12">
-				<AddLink />
-				<Links />
-			</section>
-			<aside className="flex items-center justify-center border-l border-french-gray max-sm:hidden grow"></aside>
-		</main>
+		<>
+			<AddLink />
+			<Links />
+		</>
 	);
 };
 
