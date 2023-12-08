@@ -1,7 +1,5 @@
 import React from 'react';
-
-import { GripVertical } from 'lucide-react';
-import { Trash2 } from 'lucide-react';
+import { MoveVertical } from 'lucide-react';
 
 import LinkForm from '../LinkForm/LinkForm';
 import ToggleButton from '../ToggleButton/ToggleButton';
@@ -10,25 +8,26 @@ export type Props = {};
 
 const Link: React.FC = () => {
 	return (
-		<div className="w-full rounded-xl bg-ghost-gray p-5 max-sm:p-3">
-			<div className="w-full h-full flex justify-between items-center">
-				<div className="flex gap-2 max-[345px]:gap-1">
-					<div className="flex grow cursor-grabbing">
-						<GripVertical className="self-center text-jet" />
-					</div>
-					<LinkForm />
-				</div>
-				<div className="flex flex-col gap-3">
-					<ToggleButton />
+		<div className="flex flex-col gap-4 w-full rounded-xl bg-ghost-gray text-jet p-5 max-sm:p-3">
+			<div className="flex justify-between items-center">
+				<button className="flex items-center gap-1 cursor-grabbing">
+					<MoveVertical size={12} />
+					<span className="font-medium">Link</span>
+				</button>
+				
+				<div className="flex gap-1 items-center text-jet">
 					<button
-						title="Delete Link"
-						aria-label="Delete Link"
-						className="bg-none p-1 pr-0 self-end text-jet"
+						title="Remove Link"
+						aria-label="Remove Link"
+						className="rounded-sm px-2 hover:bg-jet/10 duration-300 transition-colors"
 					>
-						<Trash2 size={22} />
+						remove
 					</button>
+					<ToggleButton />
 				</div>
 			</div>
+
+			<LinkForm />
 		</div>
 	);
 };
