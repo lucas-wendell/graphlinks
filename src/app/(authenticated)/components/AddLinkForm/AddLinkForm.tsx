@@ -9,6 +9,8 @@ import { useForm } from 'react-hook-form';
 import { FormComposition } from '../../../shared-components/Form';
 import Input from '../../../shared-components/Input/Input';
 import Button from '../../../shared-components/Button/Button';
+import { createLink } from '@/service/crud-links/create-link';
+import { useSession } from 'next-auth/react';
 
 export const addLinkFormSchema = z.object({
 	name: z.string().nonempty('Name is a required field'),
@@ -20,6 +22,7 @@ export type AddLinkFormData = z.infer<typeof addLinkFormSchema>;
 export type Props = {};
 
 const AddLinkForm: React.FC<Props> = ({}) => {
+	const { data: session } = useSession();
 	const {
 		register,
 		handleSubmit,
@@ -27,8 +30,24 @@ const AddLinkForm: React.FC<Props> = ({}) => {
 	} = useForm<AddLinkFormData>({
 		resolver: zodResolver(addLinkFormSchema),
 	});
+
+	const onSubmit = (data: AddLinkFormData) => {
+		const id = session?.user.id;
+		const jwt = session?.jwt;
+
+		if (!id || !jwt) return;
+
+		createLink({
+			title: data.name,
+			link: data.url,
+			svgIcon: '',
+			userID: id,
+			userToken: jwt,
+		});
+	};
+
 	return (
-		<FormComposition.Form>
+		<FormComposition.Form onSubmit={handleSubmit(onSubmit)}>
 			<FormComposition.Inputs>
 				<Input<AddLinkFormData>
 					name="name"
