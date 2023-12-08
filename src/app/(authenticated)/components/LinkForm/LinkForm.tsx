@@ -28,7 +28,6 @@ const LinkForm: React.FC<Props> = ({}) => {
 				register={register}
 				error={errors.link?.message}
 				name="link"
-				link="https://github.com"
 				registerOptions={{ onBlur: onSubmit }}
 			/>
 		</form>
