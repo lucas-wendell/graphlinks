@@ -1,5 +1,6 @@
-import { Meta, StoryObj } from '@storybook/react';
-import LinkInput, { Props } from './LinkInput';
+import type { Meta, StoryObj } from '@storybook/react';
+import LinkInput, { type Props } from './LinkInput';
+import type { Mock } from './mock';
 
 export default {
 	component: LinkInput,
@@ -9,10 +10,10 @@ export default {
 
 type Story = StoryObj<Props<{}>>;
 
-export const Primary: Story = {};
+export const Primary: Story = {
+	render: () => <LinkInput<Mock> name="test" />,
+};
 
 export const WithError: Story = {
-	args: {
-		error: 'Error',
-	},
+	render: () => <LinkInput<Mock> name="test" error="test error" />,
 };
