@@ -4,9 +4,15 @@ import { MoveVertical } from 'lucide-react';
 import LinkForm from '../LinkForm/LinkForm';
 import ToggleButton from '../ToggleButton/ToggleButton';
 
-export type Props = {};
+export type Props = {
+	id: string;
+	isActive: boolean;
+	title: string;
+	link: string;
+	svgIcon: string;
+};
 
-const Link: React.FC = () => {
+const Link: React.FC<Props> = ({ id, isActive, title, link, svgIcon }) => {
 	return (
 		<div className="flex flex-col gap-4 w-full rounded-xl bg-ghost-gray text-jet p-5 max-sm:p-3">
 			<div className="flex justify-between items-center">
@@ -14,7 +20,7 @@ const Link: React.FC = () => {
 					<MoveVertical size={12} />
 					<span className="font-medium">Link</span>
 				</button>
-				
+
 				<div className="flex gap-1 items-center text-jet">
 					<button
 						title="Remove Link"
@@ -23,11 +29,11 @@ const Link: React.FC = () => {
 					>
 						remove
 					</button>
-					<ToggleButton />
+					<ToggleButton isActive={isActive} />
 				</div>
 			</div>
 
-			<LinkForm />
+			<LinkForm defaultTitle={title} defaultLink={link} />
 		</div>
 	);
 };

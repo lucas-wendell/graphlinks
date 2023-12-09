@@ -2,10 +2,11 @@
 
 import React, { useState } from 'react';
 import { motion, spring } from 'framer-motion';
-export type Props = {};
+export type Props = { isActive: boolean };
 
-const ToggleButton: React.FC<Props> = ({}) => {
-	const [isActive, setIsActive] = useState(false);
+const ToggleButton: React.FC<Props> = ({ isActive: isActiveProp }) => {
+	const [isActive, setIsActive] = useState(isActiveProp);
+
 	return (
 		<motion.button
 			title="Toggle Link Status"
