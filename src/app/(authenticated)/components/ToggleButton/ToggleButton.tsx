@@ -1,11 +1,20 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, spring } from 'framer-motion';
-export type Props = { isActive: boolean };
+import { updateLink } from '@/service/crud-links/update-link';
+import { useSession } from 'next-auth/react';
+export type Props = { isActive: boolean; id: string };
 
-const ToggleButton: React.FC<Props> = ({ isActive: isActiveProp }) => {
+const ToggleButton: React.FC<Props> = ({ isActive: isActiveProp, id }) => {
 	const [isActive, setIsActive] = useState(isActiveProp);
+	const { data: session } = useSession();
+	const jwt = session?.jwt;
+
+	useEffect(() => {
+		if (!jwt) return;
+		updateLink({ isActive, userToken: jwt, linkID: id });
+	}, [isActive, id, jwt]);
 
 	return (
 		<motion.button

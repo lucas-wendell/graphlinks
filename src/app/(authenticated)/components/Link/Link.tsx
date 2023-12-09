@@ -29,11 +29,11 @@ const Link: React.FC<Props> = ({ id, isActive, title, link, svgIcon }) => {
 					>
 						remove
 					</button>
-					<ToggleButton isActive={isActive} />
+					<ToggleButton isActive={isActive} id={id} />
 				</div>
 			</div>
 
-			<LinkForm defaultTitle={title} defaultLink={link} />
+			<LinkForm defaultTitle={title} defaultLink={link} id={id} />
 		</div>
 	);
 };
