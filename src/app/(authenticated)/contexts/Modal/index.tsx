@@ -6,7 +6,7 @@ export type TypeOfValues = {
 };
 
 export const initialState = {
-	isOpen: true,
+	isOpen: false,
 	setIsOpen: () => {},
 };
 

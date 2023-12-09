@@ -6,11 +6,12 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 
+import { useSession } from 'next-auth/react';
+import { createLinkAction } from './action';
+
 import { FormComposition } from '../../../shared-components/Form';
 import Input from '../../../shared-components/Input/Input';
 import Button from '../../../shared-components/Button/Button';
-import { createLink } from '@/service/crud-links/create-link';
-import { useSession } from 'next-auth/react';
 
 export const addLinkFormSchema = z.object({
 	name: z.string().nonempty('Name is a required field'),
@@ -37,7 +38,7 @@ const AddLinkForm: React.FC<Props> = ({}) => {
 
 		if (!id || !jwt) return;
 
-		createLink({
+		createLinkAction({
 			title: data.name,
 			link: data.url,
 			svgIcon: '',
