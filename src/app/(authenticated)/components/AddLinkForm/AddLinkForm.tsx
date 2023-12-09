@@ -28,6 +28,7 @@ const AddLinkForm: React.FC<Props> = ({}) => {
 		register,
 		handleSubmit,
 		formState: { errors },
+		reset,
 	} = useForm<AddLinkFormData>({
 		resolver: zodResolver(addLinkFormSchema),
 	});
@@ -45,6 +46,7 @@ const AddLinkForm: React.FC<Props> = ({}) => {
 			userID: id,
 			userToken: jwt,
 		});
+		reset();
 	};
 
 	return (
