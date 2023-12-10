@@ -6,7 +6,6 @@ import ToggleButton from '../ToggleButton/ToggleButton';
 import RemoveButton from '../RemoveButton/RemoveButton';
 
 import { authOptions } from '@/utils/authOptions';
-import { redirect } from 'next/navigation';
 import { getServerSession } from 'next-auth';
 
 export type Props = {
