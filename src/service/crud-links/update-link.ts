@@ -3,6 +3,18 @@ import { GQL_MUTATION_UPDATE_LINK } from '../../graphql/mutations/crud-links/upd
 import { Response } from '../types/create-link-types';
 import { Data } from '../types/update-link-types';
 
+/**
+ * This function update a link based on id and user token
+ * @summary Function to update link
+ * @async
+ * @function updateLink
+ * @param {string} title - Title of link (optional)
+ * @param {string} link - Link to add on link (optional)
+ * @param {string} svgIcon - Svg string to add on link (optional)
+ * @param {string} linkID - ID of link to be updated (required)
+ * @param {string} isActive - Param to set link status (optional)
+ * @param {string} userToken - User jwt (required)
+ */
 export const updateLink = async ({
 	title,
 	link,
@@ -25,18 +37,5 @@ export const updateLink = async ({
 		},
 	);
 
-	console.log(response);
+	return response;
 };
-
-/* 
-"svgIcon": "",
-	"isActive": false,
-	"title": ""
-*/
-
-/* 
-
-{
-  "userID": 2
-}
-*/

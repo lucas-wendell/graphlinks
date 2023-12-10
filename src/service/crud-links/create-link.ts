@@ -10,6 +10,17 @@ type Data = {
 	svgIcon?: string;
 };
 
+/**
+ * This function create a new link
+ * @summary Function to create a new link
+ * @async
+ * @function deleteLink
+ * @param {string} title - Title of link (required)
+ * @param {string} link - Link to add on link (required)
+ * @param {string} svgIcon - Svg string to add on link (optional)
+ * @param {string} userID - Param to indentify a user (required)
+ * @param {string} userToken - User jwt (required)
+ */
 export const createLink = async ({
 	title,
 	link,
