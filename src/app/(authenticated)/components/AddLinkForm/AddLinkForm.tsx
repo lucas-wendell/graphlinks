@@ -1,56 +1,21 @@
 'use client';
 
 import React from 'react';
-import { z } from 'zod';
+import type { AddLinkFormData } from './schema';
 
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
-
-import { useSession } from 'next-auth/react';
-import { createLinkAction } from './action';
-
-import { FormComposition } from '../../../shared-components/Form';
 import Input from '../../../shared-components/Input/Input';
 import Button from '../../../shared-components/Button/Button';
 
-export const addLinkFormSchema = z.object({
-	name: z.string().nonempty('Name is a required field'),
-	url: z.string().nonempty('Url is a required field'),
-});
-
-export type AddLinkFormData = z.infer<typeof addLinkFormSchema>;
+import { useAddLinkForm } from './hooks/useAddLinkForm';
+import { FormComposition } from '../../../shared-components/Form';
 
 export type Props = {};
 
 const AddLinkForm: React.FC<Props> = ({}) => {
-	const { data: session } = useSession();
-	const {
-		register,
-		handleSubmit,
-		formState: { errors },
-		reset,
-	} = useForm<AddLinkFormData>({
-		resolver: zodResolver(addLinkFormSchema),
-	});
-
-	const onSubmit = (data: AddLinkFormData) => {
-		const id = session?.user.id;
-		const jwt = session?.jwt;
-
-		if (!id || !jwt) return;
-
-		createLinkAction({
-			title: data.name,
-			link: data.url,
-			svgIcon: '',
-			userID: id,
-			userToken: jwt,
-		});
-		reset();
-	};
+	const { errors, onSubmit, register } = useAddLinkForm();
 
 	return (
-		<FormComposition.Form onSubmit={handleSubmit(onSubmit)}>
+		<FormComposition.Form onSubmit={onSubmit}>
 			<FormComposition.Inputs>
 				<Input<AddLinkFormData>
 					name="name"
