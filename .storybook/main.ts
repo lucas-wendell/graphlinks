@@ -12,6 +12,7 @@ const config: StorybookConfig = {
 			options: {},
 		},
 		'@storybook/addon-mdx-gfm',
+		'@tomfreudenberg/next-auth-mock/storybook',
 	],
 	framework: {
 		name: '@storybook/nextjs',

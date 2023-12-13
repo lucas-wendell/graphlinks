@@ -1,12 +1,12 @@
 import { Meta, StoryObj } from '@storybook/react';
-import Link, { Props } from './Link';
+import MockLink from './MockComponent';
 
 export default {
-	component: Link,
+	component: MockLink,
 	title: 'AdminPages/Components/Link',
 	tags: ['autodocs'],
-} as Meta<Props>;
+} as Meta<{}>;
 
-type Story = StoryObj<Props>;
+type Story = StoryObj<{}>;
 
 export const Primary: Story = {};
